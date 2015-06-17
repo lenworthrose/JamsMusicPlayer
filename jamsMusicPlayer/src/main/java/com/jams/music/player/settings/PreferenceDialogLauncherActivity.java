@@ -35,6 +35,8 @@ import com.jams.music.player.dialog.NowPlayingColorSchemesDialog;
 import com.jams.music.player.dialog.ScanFrequencyDialog;
 import com.jams.music.player.utils.Common;
 
+import main.java.de.psdev.licensesdialog.LicensesDialog;
+
 /*************************************************************************
  * This class displays a dummy activity which fires up a FragmentDialog 
  * from PreferencesActivity.
@@ -130,7 +132,7 @@ public class PreferenceDialogLauncherActivity extends FragmentActivity {
 	        LicensesDialog appThemeDialog = new LicensesDialog();
 	        appThemeDialog.show(ft, "licensesDialog");*/
 			
-//			new LicensesDialog(this, R.raw.notices, false, false).show();
+			new LicensesDialog(this, R.raw.notices, false, false).show();
 	        
 		} else if (index==13) {
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

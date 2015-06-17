@@ -33,7 +33,7 @@ public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
         this.picasso = picasso;
         this.pauseOnScroll = pauseOnScroll;
         this.pauseOnFling = pauseOnFling;
-//        picasso.continueDispatching();
+        picasso.continueDispatching();
 
     }
 
@@ -45,7 +45,7 @@ public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
     public void onScrollStateChanged(AbsListView view, int scrollState) {
 
         if (scrollingFirstTime) {
-//            picasso.continueDispatching();
+            picasso.continueDispatching();
             scrollingFirstTime = false;
         }
 
@@ -60,11 +60,11 @@ public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
         }
 
         if (!isScrolling(scrollState) && isScrolling(previousScrollState)) {
-//            picasso.continueDispatching();
+            picasso.continueDispatching();
         }
 
         if (isScrolling(scrollState) && !isScrolling(previousScrollState)) {
-//            picasso.interruptDispatching();
+            picasso.interruptDispatching();
         }
 
         previousScrollState = scrollState;

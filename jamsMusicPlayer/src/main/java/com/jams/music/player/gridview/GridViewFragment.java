@@ -45,6 +45,7 @@ import com.andraskindler.quickscroll.QuickScrollGridView;
 import com.jams.music.player.browsersubgrid.BrowserSubGridActivity;
 import com.jams.music.player.browsersublist.BrowserSubListActivity;
 import com.jams.music.player.db.DBAccessHelper;
+import com.jams.music.player.helper.PauseOnScrollHelper;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.main.MainActivity;
@@ -324,9 +325,9 @@ public class GridViewFragment extends Fragment {
                               QuickScrollGridView.STYLE_HOLO);
 
             int[] quickScrollColors = UIElementsHelper.getQuickScrollColors(mContext);
-//            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), null, false, true);
+            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), null, false, true);
 
-//            mQuickScroll.setOnScrollListener(scrollHelper);
+            mQuickScroll.setOnScrollListener(scrollHelper);
             mQuickScroll.setPicassoInstance(mApp.getPicasso());
             mQuickScroll.setHandlebarColor(quickScrollColors[0], quickScrollColors[0], quickScrollColors[1]);
             mQuickScroll.setIndicatorColor(quickScrollColors[1], quickScrollColors[0], quickScrollColors[2]);

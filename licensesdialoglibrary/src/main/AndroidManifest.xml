@@ -15,13 +15,8 @@
   ~    limitations under the License.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    package="de.psdev.licensesdialog"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:versionCode="100000"
-    android:versionName="1.0.0-SNAPSHOT"
-    package="de.psdev.licensesdialog">
-
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
-    <application />
-</manifest>
+    android:versionName="1.0.0-SNAPSHOT" />

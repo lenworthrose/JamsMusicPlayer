@@ -41,6 +41,7 @@ import com.jams.music.player.browsersublist.BrowserSubListActivity;
 import com.jams.music.player.db.DBAccessHelper;
 import com.jams.music.player.drawer.NavigationDrawerFragment;
 import com.jams.music.player.drawer.QueueDrawerFragment;
+import com.jams.music.player.helper.PauseOnScrollHelper;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.R;
@@ -424,8 +425,8 @@ public class BrowserSubGridActivity extends FragmentActivity {
             mGridView.setAdapter(animationAdapter);
             mGridView.setOnItemClickListener(onItemClickListener);
 
-//            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), onScrollListener, false, true);
-//            mGridView.setOnScrollListener(scrollHelper);
+            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), onScrollListener, false, true);
+            mGridView.setOnScrollListener(scrollHelper);
 
             animation.setAnimationListener(new Animation.AnimationListener() {
 

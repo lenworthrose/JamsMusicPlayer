@@ -220,8 +220,8 @@ public class QuickScroll extends View {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 //Pause image loading.
-//                if (picasso != null)
-//                    picasso.interruptDispatching();
+                if (picasso != null)
+                    picasso.interruptDispatching();
 
                 if (type == TYPE_INDICATOR || type == TYPE_INDICATOR_WITH_HANDLE) {
                     scrollIndicator.startAnimation(fadeInAnimation);
@@ -236,8 +236,8 @@ public class QuickScroll extends View {
                 return true;
             case MotionEvent.ACTION_UP:
                 //Resume image loading.
-//                if (picasso != null)
-//                    picasso.continueDispatching();
+                if (picasso != null)
+                    picasso.continueDispatching();
 
                 if (type == TYPE_INDICATOR_WITH_HANDLE || type == TYPE_POPUP_WITH_HANDLE)
                     handleBar.setSelected(false);

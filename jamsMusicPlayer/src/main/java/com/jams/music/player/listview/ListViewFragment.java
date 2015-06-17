@@ -45,6 +45,7 @@ import android.widget.TextView;
 import com.andraskindler.quickscroll.QuickScroll;
 import com.jams.music.player.db.DBAccessHelper;
 import com.jams.music.player.db.MediaStoreAccessHelper;
+import com.jams.music.player.helper.PauseOnScrollHelper;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.main.MainActivity;
@@ -379,9 +380,9 @@ public class ListViewFragment extends Fragment {
 	        				  QuickScroll.STYLE_HOLO);
 	        
 	        int[] quickScrollColors = UIElementsHelper.getQuickScrollColors(mContext);
-//            PauseOnScrollHelper scrollListener = new PauseOnScrollHelper(mApp.getPicasso(), null, true, true);
+            PauseOnScrollHelper scrollListener = new PauseOnScrollHelper(mApp.getPicasso(), null, true, true);
 
-//            mQuickScroll.setOnScrollListener(scrollListener);
+            mQuickScroll.setOnScrollListener(scrollListener);
             mQuickScroll.setPicassoInstance(mApp.getPicasso());
 	        mQuickScroll.setHandlebarColor(quickScrollColors[0], quickScrollColors[0], quickScrollColors[1]);
 	        mQuickScroll.setIndicatorColor(quickScrollColors[1], quickScrollColors[0], quickScrollColors[2]);

@@ -39,6 +39,7 @@ import com.jams.music.player.animation.TranslateAnimation;
 import com.jams.music.player.db.DBAccessHelper;
 import com.jams.music.player.drawer.NavigationDrawerFragment;
 import com.jams.music.player.drawer.QueueDrawerFragment;
+import com.jams.music.player.helper.PauseOnScrollHelper;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.listview.ListViewCardsAdapter;
@@ -414,8 +415,8 @@ public class BrowserSubListActivity extends FragmentActivity {
             mListView.setAdapter(animationAdapter);
             mListView.setOnItemClickListener(onItemClickListener);
 
-//            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), onScrollListener, false, true);
-//            mListView.setOnScrollListener(scrollHelper);
+            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), onScrollListener, false, true);
+            mListView.setOnScrollListener(scrollHelper);
 
             animation.setAnimationListener(new Animation.AnimationListener() {
 
