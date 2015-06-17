@@ -13,24 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.PlaybackKickstarter;
+package com.jams.music.player.playbackkickstarter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.jams.music.player.DBHelpers.MediaStoreAccessHelper;
+import com.jams.music.player.db.MediaStoreAccessHelper;
 import com.jams.music.player.R;
-import com.jams.music.player.NowPlayingActivity.NowPlayingActivity;
-import com.jams.music.player.NowPlayingActivity.NowPlayingActivity.NowPlayingActivityListener;
-import com.jams.music.player.Services.AudioPlaybackService;
-import com.jams.music.player.Services.AudioPlaybackService.PrepareServiceListener;
-import com.jams.music.player.Utils.Common;
+import com.jams.music.player.nowplaying.NowPlayingActivity;
+import com.jams.music.player.nowplaying.NowPlayingActivity.NowPlayingActivityListener;
+import com.jams.music.player.services.AudioPlaybackService;
+import com.jams.music.player.services.AudioPlaybackService.PrepareServiceListener;
+import com.jams.music.player.utils.Common;
 
 /**
  * Initiates the playback sequence and 

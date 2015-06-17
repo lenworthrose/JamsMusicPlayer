@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.Services;
+package com.jams.music.player.services;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -25,7 +25,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
 import com.jams.music.player.R;
-import com.jams.music.player.AsyncTasks.AsyncPinSongsTask;
+import com.jams.music.player.asynctask.AsyncPinSongsTask;
 
 public class PinGMusicSongsService extends Service {
 	

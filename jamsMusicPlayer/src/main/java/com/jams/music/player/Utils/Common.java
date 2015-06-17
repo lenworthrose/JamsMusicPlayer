@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.Utils;
+package com.jams.music.player.utils;
 
 import android.app.Activity;
 import android.app.Application;
@@ -27,24 +27,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.images.ImageManager;
-import com.jams.music.player.AsyncTasks.AsyncGoogleMusicAuthenticationTask;
-import com.jams.music.player.DBHelpers.DBAccessHelper;
-import com.jams.music.player.GMusicHelpers.GMusicClientCalls;
-import com.jams.music.player.Helpers.UIElementsHelper;
-import com.jams.music.player.NowPlayingActivity.NowPlayingActivity;
-import com.jams.music.player.PlaybackKickstarter.PlaybackKickstarter;
+import com.jams.music.player.asynctask.AsyncGoogleMusicAuthenticationTask;
+import com.jams.music.player.db.DBAccessHelper;
+import com.jams.music.player.gmusic.GMusicClientCalls;
+import com.jams.music.player.helper.UIElementsHelper;
+import com.jams.music.player.nowplaying.NowPlayingActivity;
+import com.jams.music.player.playbackkickstarter.PlaybackKickstarter;
 import com.jams.music.player.R;
-import com.jams.music.player.Services.AudioPlaybackService;
-import com.jams.music.player.Services.PinGMusicSongsService;
+import com.jams.music.player.services.AudioPlaybackService;
+import com.jams.music.player.services.PinGMusicSongsService;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

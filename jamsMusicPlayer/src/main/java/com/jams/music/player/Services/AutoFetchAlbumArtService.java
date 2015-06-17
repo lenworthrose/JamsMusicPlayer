@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.Services;
+package com.jams.music.player.services;
 
 import android.app.Notification;
 import android.app.Service;
@@ -24,8 +24,8 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
 import com.jams.music.player.R;
-import com.jams.music.player.AsyncTasks.AsyncAutoGetAlbumArtTask;
-import com.jams.music.player.SettingsActivity.SettingsActivity____;
+import com.jams.music.player.asynctask.AsyncAutoGetAlbumArtTask;
+import com.jams.music.player.settings.SettingsActivity____;
 
 public class AutoFetchAlbumArtService extends Service {
 	

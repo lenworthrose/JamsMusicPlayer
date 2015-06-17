@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".Utils.Common"
+        android:name=".utils.Common"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -42,7 +42,7 @@
         <!-- Now Playing Activity -->
 
         <activity
-            android:name=".NowPlayingActivity.NowPlayingActivity"
+            android:name=".nowplaying.NowPlayingActivity"
             android:exported="true"
             android:label="@string/now_playing"
             android:launchMode="singleTask">
@@ -51,14 +51,14 @@
         <!-- Equalizer Activity -->
 
         <activity
-            android:name=".EqualizerActivity.EqualizerActivity"
+            android:name=".equalizer.EqualizerActivity"
             android:exported="true"
             android:label="@string/equalizer">
         </activity>
 
         <!-- Launcher Activity -->
 
-        <activity android:name=".LauncherActivity.LauncherActivity">
+        <activity android:name=".launcher.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -69,32 +69,32 @@
         <!-- Welcome Activity -->
 
         <activity
-            android:name=".WelcomeActivity.WelcomeActivity"
+            android:name=".welcome.WelcomeActivity"
             android:label="@string/app_name">
         </activity>
 
         <!-- Main Activity -->
 
         <activity
-            android:name=".MainActivity.MainActivity"
+            android:name=".main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
         </activity>
 
         <!-- Services -->
 
-        <service android:name=".Services.AudioPlaybackService" />
-        <service android:name=".Services.AutoFetchAlbumArtService" />
-        <service android:name=".Services.PinGMusicSongsService" />
+        <service android:name=".services.AudioPlaybackService" />
+        <service android:name=".services.AutoFetchAlbumArtService" />
+        <service android:name=".services.PinGMusicSongsService" />
         <service
-            android:name=".Services.LargeWidgetAdapterService"
+            android:name=".services.LargeWidgetAdapterService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
         <service
-            android:name=".Services.BuildMusicLibraryService"
+            android:name=".services.BuildMusicLibraryService"
             android:exported="false" />
         <service
-            android:name=".Services.DashClockExtensionService"
+            android:name=".services.DashClockExtensionService"
             android:icon="@drawable/dashclock_icon"
             android:label="@string/app_full_name"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
@@ -116,7 +116,7 @@
         <!-- Large Widget -->
 
         <receiver
-            android:name=".WidgetProviders.LargeWidgetProvider"
+            android:name=".widgetproviders.LargeWidgetProvider"
             android:label="Jams Large Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -130,7 +130,7 @@
         <!-- Blurred Widget -->
 
         <receiver
-            android:name=".WidgetProviders.BlurredWidgetProvider"
+            android:name=".widgetproviders.BlurredWidgetProvider"
             android:label="Jams Blurred Album Art Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -144,7 +144,7 @@
         <!-- Album Art Widget -->
 
         <receiver
-            android:name=".WidgetProviders.AlbumArtWidgetProvider"
+            android:name=".widgetproviders.AlbumArtWidgetProvider"
             android:label="Jams Album Art Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -157,7 +157,7 @@
 
         <!-- Listens for media playback buttons (headphone buttons, bluetooth buttons, etc.) -->
 
-        <receiver android:name=".BroadcastReceivers.HeadsetButtonsReceiver">
+        <receiver android:name=".receiver.HeadsetButtonsReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -166,7 +166,7 @@
         <!-- Small Widget -->
 
         <receiver
-            android:name=".WidgetProviders.SmallWidgetProvider"
+            android:name=".widgetproviders.SmallWidgetProvider"
             android:label="Jams Small Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -179,7 +179,7 @@
 
         <!-- Large widget configuration activity -->
 
-        <activity android:name=".WidgetProviders.LargeWidgetConfigActivity">
+        <activity android:name=".widgetproviders.LargeWidgetConfigActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -187,7 +187,7 @@
 
         <!-- Small widget configuration activity -->
 
-        <activity android:name=".WidgetProviders.SmallWidgetConfigActivity">
+        <activity android:name=".widgetproviders.SmallWidgetConfigActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -195,7 +195,7 @@
 
         <!-- Widget/Notification Now Playing Activity Broadcast Receiver -->
 
-        <receiver android:name=".BroadcastReceivers.LaunchNowPlayingReceiver">
+        <receiver android:name=".receiver.LaunchNowPlayingReceiver">
             <intent-filter>
                 <action android:name="com.jams.music.player.LAUNCH_NOW_PLAYING_ACTION" />
             </intent-filter>
@@ -203,7 +203,7 @@
 
         <!-- Widget/Notification Play/Pause Broadcast Receiver -->
 
-        <receiver android:name=".BroadcastReceivers.PlayPauseBroadcastReceiver">
+        <receiver android:name=".receiver.PlayPauseBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.jams.music.player.PLAY_PAUSE_ACTION" />
             </intent-filter>
@@ -211,7 +211,7 @@
 
         <!-- Widget/Notification Previous Broadcast Receiver -->
 
-        <receiver android:name=".BroadcastReceivers.PreviousBroadcastReceiver">
+        <receiver android:name=".receiver.PreviousBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.jams.music.player.PREVIOUS_ACTION" />
             </intent-filter>
@@ -219,7 +219,7 @@
 
         <!-- Widget/Notification Next Broadcast Receiver -->
 
-        <receiver android:name=".BroadcastReceivers.NextBroadcastReceiver">
+        <receiver android:name=".receiver.NextBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.jams.music.player.NEXT_ACTION" />
             </intent-filter>
@@ -227,7 +227,7 @@
 
         <!-- Stop Service Broadcast Receiver -->
 
-        <receiver android:name=".BroadcastReceivers.StopServiceBroadcastReceiver">
+        <receiver android:name=".receiver.StopServiceBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.jams.music.player.STOP_SERVICE" />
             </intent-filter>
@@ -235,7 +235,7 @@
 
         <!-- Receiver that gets called when the user changes songs from the Large Widget -->
 
-        <receiver android:name=".BroadcastReceivers.ChangeTrackBroadcastReceiver">
+        <receiver android:name=".receiver.ChangeTrackBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.jams.music.player.WIDGET_CHANGE_TRACK" />
             </intent-filter>
@@ -243,13 +243,13 @@
 
         <!-- Main Settings Activity -->
 
-        <activity android:name=".SettingsActivity.SettingsActivity">
+        <activity android:name=".settings.SettingsActivity">
         </activity>
 
         <!-- Dummy activity that launches Fragment dialogs from the Main Settings Activity -->
 
         <activity
-            android:name=".SettingsActivity.PreferenceDialogLauncherActivity"
+            android:name=".settings.PreferenceDialogLauncherActivity"
             android:label="@string/app_name"
             android:theme="@style/AppThemeTransparent">
         </activity>
@@ -257,35 +257,35 @@
         <!-- Now Playing Queue Activity -->
 
         <activity
-            android:name=".NowPlayingQueueActivity.NowPlayingQueueActivity"
+            android:name=".nowplayingqueue.NowPlayingQueueActivity"
             android:label="@string/now_playing_queue">
         </activity>
 
         <!-- Blacklist Manager -->
 
         <activity
-            android:name=".BlacklistManagerActivity.BlacklistManagerActivity"
+            android:name=".blacklist.BlacklistManagerActivity"
             android:label="@string/title_activity_blacklist_manager">
         </activity>
 
         <!-- Music Libraries Editor Activity -->
 
         <activity
-            android:name=".MusicLibraryEditorActivity.MusicLibraryEditorActivity"
+            android:name=".musiclibraryeditor.MusicLibraryEditorActivity"
             android:label="@string/music_library_editor">
         </activity>
 
         <!-- Music Libraries Editor Activity -->
 
         <activity
-            android:name=".PlaylistEditorActivity.PlaylistEditorActivity"
+            android:name=".playlisteditor.PlaylistEditorActivity"
             android:label="@string/playlists">
         </activity>
 
         <!-- KitKat Fix Activity -->
 
         <activity
-            android:name=".Services.KitKatFixActivity"
+            android:name=".services.KitKatFixActivity"
             android:allowTaskReparenting="true"
             android:alwaysRetainTaskState="false"
             android:clearTaskOnLaunch="true"
@@ -296,11 +296,11 @@
             android:stateNotNeeded="true"
             android:theme="@android:style/Theme.NoDisplay" />
         <activity
-            android:name=".BrowserSubListActivity.BrowserSubListActivity"
+            android:name=".browsersublist.BrowserSubListActivity"
             android:label="@string/title_activity_browser_sub">
         </activity>
         <activity
-            android:name=".BrowserSubGridActivity.BrowserSubGridActivity"
+            android:name=".browsersubgrid.BrowserSubGridActivity"
             android:label="@string/title_activity_browsser_sub_grid">
         </activity>
     </application>

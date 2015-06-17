@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.WidgetProviders;
+package com.jams.music.player.widgetproviders;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 
-import com.jams.music.player.AsyncTasks.AsyncUpdateSmallWidgetTask;
+import com.jams.music.player.asynctask.AsyncUpdateSmallWidgetTask;
 
 public class SmallWidgetProvider extends AppWidgetProvider {
 	

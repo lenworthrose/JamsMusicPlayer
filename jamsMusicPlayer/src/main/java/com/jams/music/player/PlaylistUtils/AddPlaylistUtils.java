@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.PlaylistUtils;
+package com.jams.music.player.playlistutils;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -23,7 +23,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.jams.music.player.DBHelpers.DBAccessHelper;
+import com.jams.music.player.db.DBAccessHelper;
 
 public class AddPlaylistUtils {
 	

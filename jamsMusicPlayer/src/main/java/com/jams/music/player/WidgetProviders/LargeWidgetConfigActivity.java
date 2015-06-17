@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.WidgetProviders;
+package com.jams.music.player.widgetproviders;
 
 import android.app.Activity;
 import android.app.AlertDialog;

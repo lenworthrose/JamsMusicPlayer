@@ -29,7 +29,7 @@
  * limitations under the License.
  */
 
-package com.jams.music.player.RemoteControlClient;
+package com.jams.music.player.remotecontrolclient;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

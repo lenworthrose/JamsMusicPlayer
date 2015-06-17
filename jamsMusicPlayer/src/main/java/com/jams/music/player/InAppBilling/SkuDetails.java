@@ -28,7 +28,7 @@
  * limitations under the License.
  */
 
-package com.jams.music.player.InAppBilling;
+package com.jams.music.player.inappbilling;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.Services;
+package com.jams.music.player.services;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,8 +26,8 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.jams.music.player.R;
-import com.jams.music.player.DBHelpers.DBAccessHelper;
-import com.jams.music.player.Utils.Common;
+import com.jams.music.player.db.DBAccessHelper;
+import com.jams.music.player.utils.Common;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.ImageSize;

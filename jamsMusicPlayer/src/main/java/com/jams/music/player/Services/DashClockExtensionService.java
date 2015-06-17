@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.Services;
+package com.jams.music.player.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,8 +24,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import com.google.android.apps.dashclock.api.DashClockExtension;
 import com.google.android.apps.dashclock.api.ExtensionData;
 import com.jams.music.player.R;
-import com.jams.music.player.NowPlayingActivity.NowPlayingActivity;
-import com.jams.music.player.Utils.Common;
+import com.jams.music.player.nowplaying.NowPlayingActivity;
+import com.jams.music.player.utils.Common;
 
 public class DashClockExtensionService extends DashClockExtension {
 	

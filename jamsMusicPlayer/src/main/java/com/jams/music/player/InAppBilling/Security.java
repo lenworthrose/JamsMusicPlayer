@@ -28,7 +28,7 @@
  * limitations under the License.
  */
 
-package com.jams.music.player.InAppBilling;
+package com.jams.music.player.inappbilling;
 
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;

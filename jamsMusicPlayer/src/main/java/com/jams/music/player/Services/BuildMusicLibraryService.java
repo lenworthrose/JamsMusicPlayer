@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.Services;
+package com.jams.music.player.services;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -26,8 +26,8 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.jams.music.player.R;
-import com.jams.music.player.AsyncTasks.AsyncBuildLibraryTask;
-import com.jams.music.player.WelcomeActivity.WelcomeActivity;
+import com.jams.music.player.asynctask.AsyncBuildLibraryTask;
+import com.jams.music.player.welcome.WelcomeActivity;
 
 public class BuildMusicLibraryService extends Service implements AsyncBuildLibraryTask.OnBuildLibraryProgressUpdate {
 	

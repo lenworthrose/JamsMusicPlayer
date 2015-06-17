@@ -28,7 +28,7 @@
  * limitations under the License.
  */
 
-package com.jams.music.player.InAppBilling;
+package com.jams.music.player.inappbilling;
 
 /**
  * Represents the result of an in-app billing operation.

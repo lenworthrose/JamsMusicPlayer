@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jams.music.player.Services;
+package com.jams.music.player.services;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -28,7 +28,6 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
-import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaMetadataRetriever;
@@ -54,25 +53,24 @@ import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
-import com.jams.music.player.AsyncTasks.AsyncGetSongStreamURLTask;
-import com.jams.music.player.BroadcastReceivers.HeadsetButtonsReceiver;
-import com.jams.music.player.BroadcastReceivers.HeadsetPlugBroadcastReceiver;
-import com.jams.music.player.DBHelpers.DBAccessHelper;
-import com.jams.music.player.Helpers.AudioManagerHelper;
-import com.jams.music.player.Helpers.EqualizerHelper;
-import com.jams.music.player.Helpers.SongHelper;
-import com.jams.music.player.NowPlayingActivity.NowPlayingActivity;
-import com.jams.music.player.PlaybackKickstarter.PlaybackKickstarter.BuildCursorListener;
+import com.jams.music.player.asynctask.AsyncGetSongStreamURLTask;
+import com.jams.music.player.receiver.HeadsetButtonsReceiver;
+import com.jams.music.player.receiver.HeadsetPlugBroadcastReceiver;
+import com.jams.music.player.db.DBAccessHelper;
+import com.jams.music.player.helper.AudioManagerHelper;
+import com.jams.music.player.helper.EqualizerHelper;
+import com.jams.music.player.helper.SongHelper;
+import com.jams.music.player.playbackkickstarter.PlaybackKickstarter.BuildCursorListener;
 import com.jams.music.player.R;
-import com.jams.music.player.RemoteControlClient.RemoteControlClientCompat;
-import com.jams.music.player.RemoteControlClient.RemoteControlHelper;
-import com.jams.music.player.Scrobbling.ScrobbleDroidHelper;
-import com.jams.music.player.Scrobbling.SimpleLastFMHelper;
-import com.jams.music.player.Utils.Common;
-import com.jams.music.player.WidgetProviders.AlbumArtWidgetProvider;
-import com.jams.music.player.WidgetProviders.BlurredWidgetProvider;
-import com.jams.music.player.WidgetProviders.LargeWidgetProvider;
-import com.jams.music.player.WidgetProviders.SmallWidgetProvider;
+import com.jams.music.player.remotecontrolclient.RemoteControlClientCompat;
+import com.jams.music.player.remotecontrolclient.RemoteControlHelper;
+import com.jams.music.player.scrobbling.ScrobbleDroidHelper;
+import com.jams.music.player.scrobbling.SimpleLastFMHelper;
+import com.jams.music.player.utils.Common;
+import com.jams.music.player.widgetproviders.AlbumArtWidgetProvider;
+import com.jams.music.player.widgetproviders.BlurredWidgetProvider;
+import com.jams.music.player.widgetproviders.LargeWidgetProvider;
+import com.jams.music.player.widgetproviders.SmallWidgetProvider;
 
 import java.io.File;
 import java.util.ArrayList;
