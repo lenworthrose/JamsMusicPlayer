@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.jams.music.player"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 22
 
         //RenderScript backward compatibility for guassian blurs.
@@ -55,7 +55,6 @@ dependencies {
     compile files('libs/universal-image-loader-1.9.3-with-sources.jar')
     compile files('libs/com.haarman.listviewanimations-2.6.0.jar')
     compile files('libs/nineoldandroids-2.4.0.jar')
-    compile files('libs/renderscript-v8.jar')
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.google.android.gms:play-services-base:7.5.0'
 }

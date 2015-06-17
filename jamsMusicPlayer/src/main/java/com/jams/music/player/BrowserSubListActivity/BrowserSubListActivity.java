@@ -417,8 +417,8 @@ public class BrowserSubListActivity extends FragmentActivity {
             mListView.setAdapter(animationAdapter);
             mListView.setOnItemClickListener(onItemClickListener);
 
-            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), onScrollListener, false, true);
-            mListView.setOnScrollListener(scrollHelper);
+//            PauseOnScrollHelper scrollHelper = new PauseOnScrollHelper(mApp.getPicasso(), onScrollListener, false, true);
+//            mListView.setOnScrollListener(scrollHelper);
 
             animation.setAnimationListener(new Animation.AnimationListener() {
 

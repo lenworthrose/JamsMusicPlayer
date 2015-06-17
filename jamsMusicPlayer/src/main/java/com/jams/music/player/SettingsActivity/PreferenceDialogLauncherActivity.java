@@ -16,10 +16,8 @@
 package com.jams.music.player.SettingsActivity;
 
 
-import main.java.de.psdev.licensesdialog.LicensesDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -36,6 +34,8 @@ import com.jams.music.player.Dialogs.GooglePlayMusicAuthenticationDialog;
 import com.jams.music.player.Dialogs.NowPlayingColorSchemesDialog;
 import com.jams.music.player.Dialogs.ScanFrequencyDialog;
 import com.jams.music.player.Utils.Common;
+
+import de.psdev.licensesdialog.LicensesDialog;
 
 /*************************************************************************
  * This class displays a dummy activity which fires up a FragmentDialog 
@@ -132,7 +132,7 @@ public class PreferenceDialogLauncherActivity extends FragmentActivity {
 	        LicensesDialog appThemeDialog = new LicensesDialog();
 	        appThemeDialog.show(ft, "licensesDialog");*/
 			
-			new LicensesDialog(this, R.raw.notices, false, false).show();
+//			new LicensesDialog(this, R.raw.notices, false, false).show();
 	        
 		} else if (index==13) {
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

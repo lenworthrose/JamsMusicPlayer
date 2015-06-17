@@ -16,8 +16,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.*;
+import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.GridView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -76,8 +79,8 @@ public class QuickScrollGridView extends View {
      * Initializing the QuickScroll, this function must be called.
      * <p/>
      *
-     * @param type       the QuickScroll type. Available inputs: <b>QuickScroll.TYPE_POPUP</b> or <b>QuickScroll.TYPE_INDICATOR</b>
-     * @param list       the GridView
+     * @param type the QuickScroll type. Available inputs: <b>QuickScroll.TYPE_POPUP</b> or <b>QuickScroll.TYPE_INDICATOR</b>
+     * @param list the GridView
      * @param scrollable the adapter, must implement Scrollable interface
      */
     public void init(final int type, final GridView grid, final Scrollable scrollable, final int style) {
@@ -134,14 +137,14 @@ public class QuickScrollGridView extends View {
             container.addView(scrollIndicatorTextView);
         } else {
             scrollIndicator = createPin();
-            scrollIndicatorTextView = (TextView) scrollIndicator.findViewById(ID_PIN_TEXT);
+            scrollIndicatorTextView = (TextView)scrollIndicator.findViewById(ID_PIN_TEXT);
             (scrollIndicator.findViewById(ID_PIN)).getLayoutParams().width = 25;
             container.addView(scrollIndicator);
         }
 
         // setting scrollbar width
         final float density = getResources().getDisplayMetrics().density;
-        getLayoutParams().width = (int) (10 * density);
+        getLayoutParams().width = (int)(10 * density);
         scrollIndicatorTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 32);
 
         // scrollbar setup
@@ -167,20 +170,20 @@ public class QuickScrollGridView extends View {
             if (this.type == TYPE_INDICATOR_WITH_HANDLE || this.type == TYPE_POPUP_WITH_HANDLE) {
                 handleBar = new View(getContext());
                 setHandlebarColor(BLUE_LIGHT, BLUE_LIGHT, BLUE_LIGHT_SEMITRANSPARENT);
-                final RelativeLayout.LayoutParams handleParams = new RelativeLayout.LayoutParams((int) (12 * density), (int) (36 * density));
+                final RelativeLayout.LayoutParams handleParams = new RelativeLayout.LayoutParams((int)(12 * density), (int)(36 * density));
                 handleBar.setLayoutParams(handleParams);
-                ((RelativeLayout.LayoutParams) handleBar.getLayoutParams()).addRule(RelativeLayout.CENTER_HORIZONTAL);
+                ((RelativeLayout.LayoutParams)handleBar.getLayoutParams()).addRule(RelativeLayout.CENTER_HORIZONTAL);
                 layout.addView(handleBar);
 
                 gridView.setOnScrollListener(new OnScrollListener() {
 
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
-                        if (onScrollListener!=null)
+                        if (onScrollListener != null)
                             onScrollListener.onScrollStateChanged(view, scrollState);
                     }
 
                     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                        if (onScrollListener!=null)
+                        if (onScrollListener != null)
                             onScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
 
                         if (!isScrolling && totalItemCount - visibleItemCount > 0) {
@@ -215,14 +218,15 @@ public class QuickScrollGridView extends View {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 //Pause image loading.
-                if (picasso!=null)
-                    picasso.interruptDispatching();
+//                if (picasso != null)
+//                    picasso.interruptDispatching();
 
                 if (type == TYPE_INDICATOR || type == TYPE_INDICATOR_WITH_HANDLE) {
                     scrollIndicator.startAnimation(fadeInAnimation);
                     scrollIndicator.setPadding(0, 0, getWidth(), 0);
                 } else
-                    scrollIndicatorTextView.startAnimation(fadeInAnimation); scroll(event.getY());
+                    scrollIndicatorTextView.startAnimation(fadeInAnimation);
+                scroll(event.getY());
                 isScrolling = true;
                 return true;
             case MotionEvent.ACTION_MOVE:
@@ -230,8 +234,8 @@ public class QuickScrollGridView extends View {
                 return true;
             case MotionEvent.ACTION_UP:
                 //Resume image loading.
-                if (picasso!=null)
-                    picasso.continueDispatching();
+//                if (picasso != null)
+//                    picasso.continueDispatching();
 
                 if (type == TYPE_INDICATOR_WITH_HANDLE || type == TYPE_POPUP_WITH_HANDLE)
                     handleBar.setSelected(false);
@@ -264,7 +268,7 @@ public class QuickScrollGridView extends View {
             moveHandlebar(height - (handleBar.getHeight() / 2));
         }
 
-        int position = (int) ((height / getHeight()) * itemCount);
+        int position = (int)((height / getHeight()) * itemCount);
 /*        if (gridView instanceof ExpandableListView) {
             final int groupPosition = ExpandableListView.getPackedPositionGroup(((ExpandableListView) listView).getExpandableListPosition(position));
             if (groupPosition != -1)
@@ -275,14 +279,13 @@ public class QuickScrollGridView extends View {
             position = 0;
         else if (position >= itemCount)
             position = itemCount - 1;
-        
+
         try {
-        	scrollIndicatorTextView.setText(scrollable.getIndicatorForPosition(position, groupPosition));
+            scrollIndicatorTextView.setText(scrollable.getIndicatorForPosition(position, groupPosition));
             gridView.setSelection(scrollable.getScrollPosition(position, groupPosition));
         } catch (NullPointerException e) {
-        	e.printStackTrace();
+            e.printStackTrace();
         }
-        
     }
 
     @SuppressLint("NewApi")
@@ -313,12 +316,12 @@ public class QuickScrollGridView extends View {
      * <p/>
      *
      * @param background the background color of the square
-     * @param tip        the background color of the tip triangle
-     * @param text       the color of the text
+     * @param tip the background color of the tip triangle
+     * @param text the color of the text
      */
     public void setIndicatorColor(final int background, final int tip, final int text) {
         if (type == TYPE_INDICATOR || type == TYPE_INDICATOR_WITH_HANDLE) {
-            ((Pin) scrollIndicator.findViewById(ID_PIN)).setColor(tip);
+            ((Pin)scrollIndicator.findViewById(ID_PIN)).setColor(tip);
             scrollIndicatorTextView.setTextColor(text);
             scrollIndicatorTextView.setBackgroundColor(background);
         }
@@ -329,14 +332,14 @@ public class QuickScrollGridView extends View {
      * <p/>
      *
      * @param backgroundcolor the background color of the TextView
-     * @param bordercolor     the background color of the border surrounding the TextView
-     * @param textcolor       the color of the text
+     * @param bordercolor the background color of the border surrounding the TextView
+     * @param textcolor the color of the text
      */
     public void setPopupColor(final int backgroundcolor, final int bordercolor, final int borderwidthDPI, final int textcolor, float cornerradiusDPI) {
 
         final GradientDrawable popupbackground = new GradientDrawable();
         popupbackground.setCornerRadius(cornerradiusDPI * getResources().getDisplayMetrics().density);
-        popupbackground.setStroke((int) (borderwidthDPI * getResources().getDisplayMetrics().density), bordercolor);
+        popupbackground.setStroke((int)(borderwidthDPI * getResources().getDisplayMetrics().density), bordercolor);
         popupbackground.setColor(backgroundcolor);
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
@@ -351,28 +354,27 @@ public class QuickScrollGridView extends View {
      * Sets the width and height of the TextView containing the indicatortext. Default is WRAP_CONTENT, WRAP_CONTENT.
      * <p/>
      *
-     * @param widthDP  width in DP
+     * @param widthDP width in DP
      * @param heightDP height in DP
      */
     public void setSize(final int widthDP, final int heightDP) {
         final float density = getResources().getDisplayMetrics().density;
-        scrollIndicatorTextView.getLayoutParams().width = (int) (widthDP * density);
-        scrollIndicatorTextView.getLayoutParams().height = (int) (heightDP * density);
+        scrollIndicatorTextView.getLayoutParams().width = (int)(widthDP * density);
+        scrollIndicatorTextView.getLayoutParams().height = (int)(heightDP * density);
     }
 
     /**
      * Sets the padding of the TextView containing the indicatortext. Default is 4 dp.
      * <p/>
      *
-     * @param paddingLeftDP   left padding in DP
-     * @param paddingTopDP    top param in DP
+     * @param paddingLeftDP left padding in DP
+     * @param paddingTopDP top param in DP
      * @param paddingBottomDP bottom param in DP
-     * @param paddingRightDP  right param in DP
+     * @param paddingRightDP right param in DP
      */
     public void setTextPadding(final int paddingLeftDP, final int paddingTopDP, final int paddingBottomDP, final int paddingRightDP) {
         final float density = getResources().getDisplayMetrics().density;
-        scrollIndicatorTextView.setPadding((int) (paddingLeftDP * density), (int) (paddingTopDP * density), (int) (paddingRightDP * density), (int) (paddingBottomDP * density));
-
+        scrollIndicatorTextView.setPadding((int)(paddingLeftDP * density), (int)(paddingTopDP * density), (int)(paddingRightDP * density), (int)(paddingBottomDP * density));
     }
 
     /**
@@ -398,8 +400,8 @@ public class QuickScrollGridView extends View {
     /**
      * Set the colors of the handlebar.
      *
-     * @param inactive     - color of the inactive handlebar
-     * @param activebase   - base color of the active handlebar
+     * @param inactive - color of the inactive handlebar
+     * @param activebase - base color of the active handlebar
      * @param activestroke - stroke of the active handlebar
      */
     public void setHandlebarColor(final int inactive, final int activebase, final int activestroke) {
@@ -408,14 +410,14 @@ public class QuickScrollGridView extends View {
             final GradientDrawable bg_inactive = new GradientDrawable();
             bg_inactive.setCornerRadius(density);
             bg_inactive.setColor(inactive);
-            bg_inactive.setStroke((int) (5 * density), Color.TRANSPARENT);
+            bg_inactive.setStroke((int)(5 * density), Color.TRANSPARENT);
             final GradientDrawable bg_active = new GradientDrawable();
             bg_active.setCornerRadius(density);
             bg_active.setColor(activebase);
-            bg_active.setStroke((int) (5 * density), activestroke);
+            bg_active.setStroke((int)(5 * density), activestroke);
             final StateListDrawable states = new StateListDrawable();
-            states.addState(new int[]{android.R.attr.state_selected}, bg_active);
-            states.addState(new int[]{android.R.attr.state_enabled}, bg_inactive);
+            states.addState(new int[] { android.R.attr.state_selected }, bg_active);
+            states.addState(new int[] { android.R.attr.state_enabled }, bg_inactive);
 
             if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
                 handleBar.setBackgroundDrawable(states);
@@ -455,5 +457,4 @@ public class QuickScrollGridView extends View {
     }
 
     public void setPicassoInstance(Picasso picasso) { this.picasso = picasso; }
-
 }

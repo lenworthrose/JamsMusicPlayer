@@ -380,9 +380,9 @@ public class ListViewFragment extends Fragment {
 	        				  QuickScroll.STYLE_HOLO);
 	        
 	        int[] quickScrollColors = UIElementsHelper.getQuickScrollColors(mContext);
-            PauseOnScrollHelper scrollListener = new PauseOnScrollHelper(mApp.getPicasso(), null, true, true);
+//            PauseOnScrollHelper scrollListener = new PauseOnScrollHelper(mApp.getPicasso(), null, true, true);
 
-            mQuickScroll.setOnScrollListener(scrollListener);
+//            mQuickScroll.setOnScrollListener(scrollListener);
             mQuickScroll.setPicassoInstance(mApp.getPicasso());
 	        mQuickScroll.setHandlebarColor(quickScrollColors[0], quickScrollColors[0], quickScrollColors[1]);
 	        mQuickScroll.setIndicatorColor(quickScrollColors[1], quickScrollColors[0], quickScrollColors[2]);
