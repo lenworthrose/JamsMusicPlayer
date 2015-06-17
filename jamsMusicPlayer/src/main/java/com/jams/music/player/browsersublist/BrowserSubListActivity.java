@@ -35,6 +35,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jams.music.player.R;
 import com.jams.music.player.animation.TranslateAnimation;
 import com.jams.music.player.db.DBAccessHelper;
 import com.jams.music.player.drawer.NavigationDrawerFragment;
@@ -43,7 +44,6 @@ import com.jams.music.player.helper.PauseOnScrollHelper;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.listview.ListViewCardsAdapter;
-import com.jams.music.player.R;
 import com.jams.music.player.utils.Common;
 import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
@@ -86,7 +86,7 @@ public class BrowserSubListActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         mContext = getApplicationContext();
-        mApp = (Common) mContext;
+        mApp = (Common)mContext;
         mHandler = new Handler();
         mDBColumnsMap = new HashMap<Integer, String>();
 
@@ -102,19 +102,19 @@ public class BrowserSubListActivity extends FragmentActivity {
         mHeaderSubText = getIntent().getExtras().getString("subText");
         mField2 = getIntent().getExtras().getString("field2");
 
-        if (mHeaderText==null || mHeaderText.isEmpty())
+        if (mHeaderText == null || mHeaderText.isEmpty())
             mHeaderText = mContext.getResources().getString(R.string.unknown_genre);
 
-        mHeaderLayout = (RelativeLayout) findViewById(R.id.browser_sub_header_layout);
-        mHeaderImage = (ImageView) findViewById(R.id.browser_sub_header_image);
-        mHeaderTextView = (TextView) findViewById(R.id.browser_sub_header_text);
-        mHeaderSubTextView = (TextView) findViewById(R.id.browser_sub_header_sub_text);
-        mListView = (ListView) findViewById(R.id.browser_sub_list_view);
-        mDrawerParentLayout = (RelativeLayout) findViewById(R.id.browser_sub_drawer_parent);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.browser_sub_drawer_root);
-        mNavDrawerLayout = (RelativeLayout) findViewById(R.id.nav_drawer_container);
-        mCurrentQueueDrawerLayout = (RelativeLayout) findViewById(R.id.current_queue_drawer_container);
-        mPlayAllText = (TextView) findViewById(R.id.browser_sub_play_all);
+        mHeaderLayout = (RelativeLayout)findViewById(R.id.browser_sub_header_layout);
+        mHeaderImage = (ImageView)findViewById(R.id.browser_sub_header_image);
+        mHeaderTextView = (TextView)findViewById(R.id.browser_sub_header_text);
+        mHeaderSubTextView = (TextView)findViewById(R.id.browser_sub_header_sub_text);
+        mListView = (ListView)findViewById(R.id.browser_sub_list_view);
+        mDrawerParentLayout = (RelativeLayout)findViewById(R.id.browser_sub_drawer_parent);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.browser_sub_drawer_root);
+        mNavDrawerLayout = (RelativeLayout)findViewById(R.id.nav_drawer_container);
+        mCurrentQueueDrawerLayout = (RelativeLayout)findViewById(R.id.current_queue_drawer_container);
+        mPlayAllText = (TextView)findViewById(R.id.browser_sub_play_all);
 
         mHeaderTextView.setTypeface(TypefaceHelper.getTypeface(mContext, "Roboto-Regular"));
         mHeaderTextView.setText(mHeaderText);
@@ -143,19 +143,17 @@ public class BrowserSubListActivity extends FragmentActivity {
                 }
 
                 mApp.getPlaybackKickstarter()
-                    .initPlayback(mContext,
-                            mQuerySelection,
-                            playbackRouteId,
-                            0,
-                            true,
-                            false);
-
+                        .initPlayback(mContext,
+                                mQuerySelection,
+                                playbackRouteId,
+                                0,
+                                true,
+                                false);
             }
-
         });
 
         //Apply the ListViews' dividers.
-        if (mApp.getCurrentTheme()==Common.DARK_THEME) {
+        if (mApp.getCurrentTheme() == Common.DARK_THEME) {
             mListView.setDivider(mContext.getResources().getDrawable(R.drawable.list_divider));
         } else {
             mListView.setDivider(mContext.getResources().getDrawable(R.drawable.list_divider_light));
@@ -174,19 +172,17 @@ public class BrowserSubListActivity extends FragmentActivity {
         //Start loading the GridView cursor.
         AsyncRunQuery task = new AsyncRunQuery();
         task.execute();
-
     }
 
     /**
      * Sets the entire activity-wide theme.
      */
     private void setTheme() {
-        if (mApp.getCurrentTheme()==Common.DARK_THEME) {
+        if (mApp.getCurrentTheme() == Common.DARK_THEME) {
             setTheme(R.style.AppThemeNoActionBar);
         } else {
             setTheme(R.style.AppThemeLightNoActionBar);
         }
-
     }
 
     /**
@@ -198,22 +194,18 @@ public class BrowserSubListActivity extends FragmentActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             int topPadding = Common.getStatusBarHeight(mContext);
-            if (mDrawerParentLayout!=null) {
-                mDrawerParentLayout.setPadding(0, (0-topPadding), 0, 0);
+            if (mDrawerParentLayout != null) {
+                mDrawerParentLayout.setPadding(0, (0 - topPadding), 0, 0);
                 mDrawerParentLayout.setClipToPadding(false);
 
                 int navigationBarHeight = Common.getNavigationBarHeight(mContext);
                 mListView.setClipToPadding(false);
                 mListView.setPadding(mListView.getPaddingLeft(),
-                                     mListView.getPaddingTop(),
-                                     mListView.getPaddingRight(),
-                                     mListView.getPaddingBottom() + navigationBarHeight);
-
-
+                        mListView.getPaddingTop(),
+                        mListView.getPaddingRight(),
+                        mListView.getPaddingBottom() + navigationBarHeight);
             }
-
         }
-
     }
 
     /**
@@ -228,9 +220,8 @@ public class BrowserSubListActivity extends FragmentActivity {
         //Load the current queue drawer.
         mQueueDrawerFragment = new QueueDrawerFragment();
         getSupportFragmentManager().beginTransaction()
-                                   .replace(R.id.current_queue_drawer_container, mQueueDrawerFragment)
-                                   .commit();
-
+                .replace(R.id.current_queue_drawer_container, mQueueDrawerFragment)
+                .commit();
     }
 
     /**
@@ -244,17 +235,16 @@ public class BrowserSubListActivity extends FragmentActivity {
             //Slide down the header image.
             mApp.getPicasso().load(mHeaderImagePath).into(mHeaderImage);
             TranslateAnimation slideDown = new TranslateAnimation(mHeaderLayout, 400, new DecelerateInterpolator(2.0f),
-                                                                  View.VISIBLE, Animation.RELATIVE_TO_SELF,
-                                                                  0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
-                                                                  Animation.RELATIVE_TO_SELF, -2.0f,
-                                                                  Animation.RELATIVE_TO_SELF, 0.0f);
+                    View.VISIBLE, Animation.RELATIVE_TO_SELF,
+                    0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                    Animation.RELATIVE_TO_SELF, -2.0f,
+                    Animation.RELATIVE_TO_SELF, 0.0f);
 
             slideDown.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
                 public void onAnimationStart(Animation animation) {
                     mHeaderLayout.setVisibility(View.VISIBLE);
-
                 }
 
                 @Override
@@ -266,12 +256,10 @@ public class BrowserSubListActivity extends FragmentActivity {
                 public void onAnimationRepeat(Animation animation) {
 
                 }
-
             });
 
             slideDown.animate();
         }
-
     };
 
     /**
@@ -310,7 +298,6 @@ public class BrowserSubListActivity extends FragmentActivity {
                     mDBColumnsMap.put(ListViewCardsAdapter.FIELD_3, DBAccessHelper.SONG_TRACK_NUMBER);
                     break;
             }
-
         }
 
         /**
@@ -321,29 +308,29 @@ public class BrowserSubListActivity extends FragmentActivity {
             switch (mFragmentId) {
                 case Common.ARTISTS_FLIPPED_SONGS_FRAGMENT:
                     mQuerySelection = " AND " + DBAccessHelper.SONG_ALBUM + "=" + "'"
-                                    + mHeaderText.replace("'", "''") + "'" + " AND "
-                                    + DBAccessHelper.SONG_ARTIST + "=" + "'"
-                                    + mHeaderSubText.replace("'", "''") + "'";
+                            + mHeaderText.replace("'", "''") + "'" + " AND "
+                            + DBAccessHelper.SONG_ARTIST + "=" + "'"
+                            + mHeaderSubText.replace("'", "''") + "'";
                     break;
                 case Common.ALBUM_ARTISTS_FLIPPED_SONGS_FRAGMENT:
                     mQuerySelection = " AND " + DBAccessHelper.SONG_ALBUM + "=" + "'"
-                                    + mHeaderText.replace("'", "''") + "'" + " AND "
-                                    + DBAccessHelper.SONG_ALBUM_ARTIST + "=" + "'"
-                                    + mHeaderSubText.replace("'", "''") + "'";
+                            + mHeaderText.replace("'", "''") + "'" + " AND "
+                            + DBAccessHelper.SONG_ALBUM_ARTIST + "=" + "'"
+                            + mHeaderSubText.replace("'", "''") + "'";
                     break;
                 case Common.ALBUMS_FLIPPED_FRAGMENT:
                     mQuerySelection = " AND " + DBAccessHelper.SONG_ALBUM + "=" + "'"
-                                    + mHeaderText.replace("'", "''") + "'" + " AND "
-                                    + DBAccessHelper.SONG_ARTIST + "=" + "'"
-                                    + mHeaderSubText.replace("'", "''") + "'";
+                            + mHeaderText.replace("'", "''") + "'" + " AND "
+                            + DBAccessHelper.SONG_ARTIST + "=" + "'"
+                            + mHeaderSubText.replace("'", "''") + "'";
                     break;
                 case Common.GENRES_FLIPPED_SONGS_FRAGMENT:
                     mQuerySelection = " AND " + DBAccessHelper.SONG_ALBUM + "=" + "'"
-                                    + mHeaderText.replace("'", "''") + "'" + " AND "
-                                    + DBAccessHelper.SONG_GENRE + "=" + "'"
-                                    + mHeaderSubText.replace("'", "''") + "'" + " AND "
-                                    + DBAccessHelper.SONG_ARTIST + "=" + "'"
-                                    + mField2.replace("'", "''") + "'";
+                            + mHeaderText.replace("'", "''") + "'" + " AND "
+                            + DBAccessHelper.SONG_GENRE + "=" + "'"
+                            + mHeaderSubText.replace("'", "''") + "'" + " AND "
+                            + DBAccessHelper.SONG_ARTIST + "=" + "'"
+                            + mField2.replace("'", "''") + "'";
                     break;
             }
 
@@ -354,9 +341,7 @@ public class BrowserSubListActivity extends FragmentActivity {
         public void onPostExecute(Void result) {
             super.onPostExecute(result);
             mHandler.postDelayed(initGridView, 200);
-
         }
-
     }
 
     /**
@@ -377,15 +362,13 @@ public class BrowserSubListActivity extends FragmentActivity {
             }
 
             mApp.getPlaybackKickstarter()
-                .initPlayback(mContext,
-                        mQuerySelection,
-                        playbackRouteId,
-                        index,
-                        true,
-                        false);
-
+                    .initPlayback(mContext,
+                            mQuerySelection,
+                            playbackRouteId,
+                            index,
+                            true,
+                            false);
         }
-
     };
 
     /**
@@ -434,14 +417,11 @@ public class BrowserSubListActivity extends FragmentActivity {
                 @Override
                 public void onAnimationStart(Animation arg0) {
                     mListView.setVisibility(View.VISIBLE);
-
                 }
-
             });
 
             mListView.startAnimation(animation);
         }
-
     };
 
     /**
@@ -459,20 +439,17 @@ public class BrowserSubListActivity extends FragmentActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 mHeaderLayout.setVisibility(View.VISIBLE);
-
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 mHeaderLayout.setVisibility(View.INVISIBLE);
-
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
 
             }
-
         });
 
         slideDown.animate();
@@ -496,7 +473,6 @@ public class BrowserSubListActivity extends FragmentActivity {
             public void onAnimationEnd(Animation arg0) {
                 mListView.setVisibility(View.INVISIBLE);
                 BrowserSubListActivity.super.onBackPressed();
-
             }
 
             @Override
@@ -509,7 +485,6 @@ public class BrowserSubListActivity extends FragmentActivity {
             public void onAnimationStart(Animation arg0) {
 
             }
-
         });
 
         mListView.startAnimation(animation);
@@ -532,18 +507,15 @@ public class BrowserSubListActivity extends FragmentActivity {
             try {
                 View topChild = view.getChildAt(0);
                 int scrollY = -(topChild.getTop()) + view.getFirstVisiblePosition() * topChild.getHeight();
-                int adjustedScrollY = (int) ((-scrollY)-mApp.convertDpToPixels(340.0f, mContext));
+                int adjustedScrollY = (int)((-scrollY) - mApp.convertDpToPixels(340.0f, mContext));
 
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mHeaderLayout.getLayoutParams();
-                params.topMargin = adjustedScrollY/3;
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)mHeaderLayout.getLayoutParams();
+                params.topMargin = adjustedScrollY / 3;
                 mHeaderLayout.setLayoutParams(params);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-
     };
 
     public Cursor getCursor() {
@@ -554,14 +526,11 @@ public class BrowserSubListActivity extends FragmentActivity {
     public void onBackPressed() {
         slideAwayHeader();
         slideAwayGridView();
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
     }
-
 }

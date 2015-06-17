@@ -16,6 +16,7 @@
 package com.jams.music.player.helper;
 
 import android.widget.AbsListView;
+
 import com.squareup.picasso.Picasso;
 
 public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
@@ -34,7 +35,6 @@ public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
         this.pauseOnScroll = pauseOnScroll;
         this.pauseOnFling = pauseOnFling;
         picasso.continueDispatching();
-
     }
 
     public PauseOnScrollHelper(Picasso picasso, boolean pauseOnScroll, boolean pauseOnFling) {
@@ -50,12 +50,12 @@ public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
         }
 
         //Intercept this method here if we don't need imagel loading to be paused while scrolling.
-        if (scrollState==SCROLL_STATE_TOUCH_SCROLL && !pauseOnScroll) {
+        if (scrollState == SCROLL_STATE_TOUCH_SCROLL && !pauseOnScroll) {
             return;
         }
 
         //Intercept this method here if we don't need imagel loading to be paused while flinging.
-        if (scrollState==SCROLL_STATE_FLING && !pauseOnFling) {
+        if (scrollState == SCROLL_STATE_FLING && !pauseOnFling) {
             return;
         }
 
@@ -73,7 +73,6 @@ public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
         if (delegate != null) {
             delegate.onScrollStateChanged(view, scrollState);
         }
-
     }
 
     protected boolean isScrolling(int scrollState) {
@@ -88,7 +87,5 @@ public class PauseOnScrollHelper implements AbsListView.OnScrollListener {
         if (delegate != null) {
             delegate.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
         }
-
     }
-
 }

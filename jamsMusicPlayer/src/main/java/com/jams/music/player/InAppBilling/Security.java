@@ -30,6 +30,9 @@
 
 package com.jams.music.player.inappbilling;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -38,9 +41,6 @@ import java.security.Signature;
 import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
-
-import android.text.TextUtils;
-import android.util.Log;
 
 /**
  * Security-related methods. For a secure implementation, all of this code
@@ -62,6 +62,7 @@ public class Security {
      * the verified purchase. The data is in JSON format and signed
      * with a private key. The data also contains the {@link PurchaseState}
      * and product ID of the purchase.
+     *
      * @param base64PublicKey the base64-encoded public key to use for verifying.
      * @param signedData the signed JSON string (signed, not encrypted)
      * @param signature the signature for the data, signed with the private key

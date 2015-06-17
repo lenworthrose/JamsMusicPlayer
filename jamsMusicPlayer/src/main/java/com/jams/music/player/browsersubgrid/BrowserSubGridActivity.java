@@ -36,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jams.music.player.R;
 import com.jams.music.player.animation.TranslateAnimation;
 import com.jams.music.player.browsersublist.BrowserSubListActivity;
 import com.jams.music.player.db.DBAccessHelper;
@@ -44,7 +45,6 @@ import com.jams.music.player.drawer.QueueDrawerFragment;
 import com.jams.music.player.helper.PauseOnScrollHelper;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
-import com.jams.music.player.R;
 import com.jams.music.player.utils.Common;
 import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
@@ -86,7 +86,7 @@ public class BrowserSubGridActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         mContext = getApplicationContext();
-        mApp = (Common) mContext;
+        mApp = (Common)mContext;
         mHandler = new Handler();
         mDBColumnsMap = new HashMap<Integer, String>();
 
@@ -101,19 +101,19 @@ public class BrowserSubGridActivity extends FragmentActivity {
         mHeaderText = getIntent().getExtras().getString("headerText");
         mHeaderSubText = getIntent().getExtras().getString("subText");
 
-        if (mHeaderText==null || mHeaderText.isEmpty())
+        if (mHeaderText == null || mHeaderText.isEmpty())
             mHeaderText = mContext.getResources().getString(R.string.unknown_genre);
 
-        mHeaderLayout = (RelativeLayout) findViewById(R.id.browser_sub_header_layout);
-        mHeaderImage = (ImageView) findViewById(R.id.browser_sub_header_image);
-        mHeaderTextView = (TextView) findViewById(R.id.browser_sub_header_text);
-        mHeaderSubTextView = (TextView) findViewById(R.id.browser_sub_header_sub_text);
-        mGridView = (GridView) findViewById(R.id.browser_sub_grid_view);
-        mDrawerParentLayout = (RelativeLayout) findViewById(R.id.browser_sub_drawer_parent);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.browser_sub_drawer_root);
-        mNavDrawerLayout = (RelativeLayout) findViewById(R.id.nav_drawer_container);
-        mCurrentQueueDrawerLayout = (RelativeLayout) findViewById(R.id.current_queue_drawer_container);
-        mPlayAllText = (TextView) findViewById(R.id.browser_sub_play_all);
+        mHeaderLayout = (RelativeLayout)findViewById(R.id.browser_sub_header_layout);
+        mHeaderImage = (ImageView)findViewById(R.id.browser_sub_header_image);
+        mHeaderTextView = (TextView)findViewById(R.id.browser_sub_header_text);
+        mHeaderSubTextView = (TextView)findViewById(R.id.browser_sub_header_sub_text);
+        mGridView = (GridView)findViewById(R.id.browser_sub_grid_view);
+        mDrawerParentLayout = (RelativeLayout)findViewById(R.id.browser_sub_drawer_parent);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.browser_sub_drawer_root);
+        mNavDrawerLayout = (RelativeLayout)findViewById(R.id.nav_drawer_container);
+        mCurrentQueueDrawerLayout = (RelativeLayout)findViewById(R.id.current_queue_drawer_container);
+        mPlayAllText = (TextView)findViewById(R.id.browser_sub_play_all);
 
         mHeaderTextView.setTypeface(TypefaceHelper.getTypeface(mContext, "Roboto-Regular"));
         mHeaderTextView.setText(mHeaderText);
@@ -142,15 +142,13 @@ public class BrowserSubGridActivity extends FragmentActivity {
                 }
 
                 mApp.getPlaybackKickstarter()
-                    .initPlayback(mContext,
-                            mQuerySelection,
-                            playbackRouteId,
-                            0,
-                            true,
-                            false);
-
+                        .initPlayback(mContext,
+                                mQuerySelection,
+                                playbackRouteId,
+                                0,
+                                true,
+                                false);
             }
-
         });
 
         mDrawerParentLayout.setBackgroundColor(UIElementsHelper.getBackgroundColor(mContext));
@@ -174,19 +172,17 @@ public class BrowserSubGridActivity extends FragmentActivity {
         //Start loading the GridView cursor.
         AsyncRunQuery task = new AsyncRunQuery();
         task.execute();
-
     }
 
     /**
      * Sets the entire activity-wide theme.
      */
     private void setTheme() {
-        if (mApp.getCurrentTheme()==Common.DARK_THEME) {
+        if (mApp.getCurrentTheme() == Common.DARK_THEME) {
             setTheme(R.style.AppThemeNoActionBar);
         } else {
             setTheme(R.style.AppThemeLightNoActionBar);
         }
-
     }
 
     /**
@@ -198,22 +194,18 @@ public class BrowserSubGridActivity extends FragmentActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             int topPadding = Common.getStatusBarHeight(mContext);
-            if (mDrawerParentLayout!=null) {
-                mDrawerParentLayout.setPadding(0, (0-topPadding), 0, 0);
+            if (mDrawerParentLayout != null) {
+                mDrawerParentLayout.setPadding(0, (0 - topPadding), 0, 0);
                 mDrawerParentLayout.setClipToPadding(false);
 
                 int navigationBarHeight = Common.getNavigationBarHeight(mContext);
                 mGridView.setClipToPadding(false);
                 mGridView.setPadding(mGridView.getPaddingLeft(),
-                                     mGridView.getPaddingTop(),
-                                     mGridView.getPaddingRight(),
-                                     mGridView.getPaddingBottom() + navigationBarHeight);
-
-
+                        mGridView.getPaddingTop(),
+                        mGridView.getPaddingRight(),
+                        mGridView.getPaddingBottom() + navigationBarHeight);
             }
-
         }
-
     }
 
     /**
@@ -222,15 +214,14 @@ public class BrowserSubGridActivity extends FragmentActivity {
     private void loadDrawerFragments() {
         //Load the navigation drawer.
         getSupportFragmentManager().beginTransaction()
-                                   .replace(R.id.nav_drawer_container, new NavigationDrawerFragment())
-                                   .commit();
+                .replace(R.id.nav_drawer_container, new NavigationDrawerFragment())
+                .commit();
 
         //Load the current queue drawer.
         mQueueDrawerFragment = new QueueDrawerFragment();
         getSupportFragmentManager().beginTransaction()
-                                   .replace(R.id.current_queue_drawer_container, mQueueDrawerFragment)
-                                   .commit();
-
+                .replace(R.id.current_queue_drawer_container, mQueueDrawerFragment)
+                .commit();
     }
 
     /**
@@ -245,17 +236,16 @@ public class BrowserSubGridActivity extends FragmentActivity {
             mApp.getPicasso().load(mHeaderImagePath).into(mHeaderImage);
 
             TranslateAnimation slideDown = new TranslateAnimation(mHeaderLayout, 400, new DecelerateInterpolator(2.0f),
-                                                                  View.VISIBLE, Animation.RELATIVE_TO_SELF,
-                                                                  0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
-                                                                  Animation.RELATIVE_TO_SELF, -2.0f,
-                                                                  Animation.RELATIVE_TO_SELF, 0.0f);
+                    View.VISIBLE, Animation.RELATIVE_TO_SELF,
+                    0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                    Animation.RELATIVE_TO_SELF, -2.0f,
+                    Animation.RELATIVE_TO_SELF, 0.0f);
 
             slideDown.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
                 public void onAnimationStart(Animation animation) {
                     mHeaderLayout.setVisibility(View.VISIBLE);
-
                 }
 
                 @Override
@@ -267,12 +257,10 @@ public class BrowserSubGridActivity extends FragmentActivity {
                 public void onAnimationRepeat(Animation animation) {
 
                 }
-
             });
 
             slideDown.animate();
         }
-
     };
 
     /**
@@ -320,7 +308,6 @@ public class BrowserSubGridActivity extends FragmentActivity {
                     mDBColumnsMap.put(BrowserSubGridAdapter.FIELD_2, DBAccessHelper.SONG_ARTIST); //Used by GenresFlippedSongs.
                     break;
             }
-
         }
 
         /**
@@ -350,9 +337,7 @@ public class BrowserSubGridActivity extends FragmentActivity {
         public void onPostExecute(Void result) {
             super.onPostExecute(result);
             mHandler.postDelayed(initGridView, 200);
-
         }
-
     }
 
     /**
@@ -364,9 +349,9 @@ public class BrowserSubGridActivity extends FragmentActivity {
         public void onItemClick(AdapterView<?> arg0, View view, int index, long id) {
 
             Bundle bundle = new Bundle();
-            bundle.putString("headerImagePath", (String) view.getTag(R.string.album_art));
-            bundle.putString("headerText", (String) view.getTag(R.string.title_text));
-            bundle.putString("field2", (String) view.getTag(R.string.field_2));
+            bundle.putString("headerImagePath", (String)view.getTag(R.string.album_art));
+            bundle.putString("headerText", (String)view.getTag(R.string.title_text));
+            bundle.putString("field2", (String)view.getTag(R.string.field_2));
             bundle.putString("subText", mHeaderText);
             bundle.putInt("fragmentId", getNewFragmentId());
 
@@ -374,9 +359,7 @@ public class BrowserSubGridActivity extends FragmentActivity {
             intent.putExtras(bundle);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
         }
-
     };
 
     /**
@@ -394,7 +377,6 @@ public class BrowserSubGridActivity extends FragmentActivity {
             default:
                 return -1;
         }
-
     }
 
     /**
@@ -406,9 +388,9 @@ public class BrowserSubGridActivity extends FragmentActivity {
         public void run() {
             android.view.animation.TranslateAnimation animation = new
                     android.view.animation.TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-                                                              Animation.RELATIVE_TO_SELF, 0.0f,
-                                                              Animation.RELATIVE_TO_SELF, 2.0f,
-                                                              Animation.RELATIVE_TO_SELF, 0.0f);
+                    Animation.RELATIVE_TO_SELF, 0.0f,
+                    Animation.RELATIVE_TO_SELF, 2.0f,
+                    Animation.RELATIVE_TO_SELF, 0.0f);
 
             animation.setDuration(150);
             animation.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -444,50 +426,43 @@ public class BrowserSubGridActivity extends FragmentActivity {
                 @Override
                 public void onAnimationStart(Animation arg0) {
                     mGridView.setVisibility(View.VISIBLE);
-
                 }
-
             });
 
             mGridView.startAnimation(animation);
         }
-
     };
 
     /**
      *
      */
 
-
     /**
      * Slides away the header layout.
      */
     private void slideAwayHeader() {
         TranslateAnimation slideDown = new TranslateAnimation(mHeaderLayout, 400, new AccelerateInterpolator(2.0f),
-                                                              View.INVISIBLE, Animation.RELATIVE_TO_SELF,
-                                                              0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
-                                                              Animation.RELATIVE_TO_SELF, 0.0f,
-                                                              Animation.RELATIVE_TO_SELF, -2.0f);
+                View.INVISIBLE, Animation.RELATIVE_TO_SELF,
+                0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, -2.0f);
 
         slideDown.setAnimationListener(new Animation.AnimationListener() {
 
             @Override
             public void onAnimationStart(Animation animation) {
                 mHeaderLayout.setVisibility(View.VISIBLE);
-
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 mHeaderLayout.setVisibility(View.INVISIBLE);
-
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
 
             }
-
         });
 
         slideDown.animate();
@@ -498,10 +473,10 @@ public class BrowserSubGridActivity extends FragmentActivity {
      */
     private void slideAwayGridView() {
         android.view.animation.TranslateAnimation animation = new
-                         android.view.animation.TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-                         Animation.RELATIVE_TO_SELF, 0.0f,
-                         Animation.RELATIVE_TO_SELF, 0.0f,
-                         Animation.RELATIVE_TO_SELF, 2.0f);
+                android.view.animation.TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 2.0f);
 
         animation.setDuration(400);
         animation.setInterpolator(new AccelerateInterpolator(2.0f));
@@ -511,7 +486,6 @@ public class BrowserSubGridActivity extends FragmentActivity {
             public void onAnimationEnd(Animation arg0) {
                 mGridView.setVisibility(View.INVISIBLE);
                 BrowserSubGridActivity.super.onBackPressed();
-
             }
 
             @Override
@@ -524,7 +498,6 @@ public class BrowserSubGridActivity extends FragmentActivity {
             public void onAnimationStart(Animation arg0) {
 
             }
-
         });
 
         mGridView.startAnimation(animation);
@@ -547,18 +520,15 @@ public class BrowserSubGridActivity extends FragmentActivity {
             try {
                 View topChild = view.getChildAt(0);
                 int scrollY = -(topChild.getTop()) + view.getFirstVisiblePosition() * topChild.getHeight();
-                int adjustedScrollY = (int) ((-scrollY)-mApp.convertDpToPixels(280.0f, mContext));
+                int adjustedScrollY = (int)((-scrollY) - mApp.convertDpToPixels(280.0f, mContext));
 
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mHeaderLayout.getLayoutParams();
-                params.topMargin = adjustedScrollY/3;
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)mHeaderLayout.getLayoutParams();
+                params.topMargin = adjustedScrollY / 3;
                 mHeaderLayout.setLayoutParams(params);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-
     };
 
     public Cursor getCursor() {
@@ -569,14 +539,11 @@ public class BrowserSubGridActivity extends FragmentActivity {
     public void onBackPressed() {
         slideAwayHeader();
         slideAwayGridView();
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
     }
-
 }

@@ -18,5 +18,5 @@ package com.jams.music.player.gmusic;
 import org.json.JSONObject;
 
 public interface IJsonObject<T> {
-	T fromJsonObject(JSONObject jsonObject);
+    T fromJsonObject(JSONObject jsonObject);
 }

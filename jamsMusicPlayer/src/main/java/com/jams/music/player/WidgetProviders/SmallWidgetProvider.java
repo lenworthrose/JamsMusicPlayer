@@ -23,24 +23,21 @@ import android.content.Intent;
 import com.jams.music.player.asynctask.AsyncUpdateSmallWidgetTask;
 
 public class SmallWidgetProvider extends AppWidgetProvider {
-	
-	private Context mContext;
-	
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		super.onReceive(context, intent);
 
-	}
-	
-	@Override
+    private Context mContext;
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+    }
+
+    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-		super.onUpdate(context, appWidgetManager, appWidgetIds);
-		mContext = context;
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+        mContext = context;
         final int N = appWidgetIds.length;
 
         AsyncUpdateSmallWidgetTask task = new AsyncUpdateSmallWidgetTask(mContext, N, appWidgetIds, appWidgetManager);
         task.execute();
- 
     }
-    
 }

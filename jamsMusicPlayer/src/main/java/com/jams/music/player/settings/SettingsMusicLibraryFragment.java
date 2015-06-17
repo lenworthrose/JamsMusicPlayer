@@ -29,8 +29,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.R;
+import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.utils.Common;
 import com.jams.music.player.welcome.WelcomeActivity;
 
@@ -52,7 +52,6 @@ public class SettingsMusicLibraryFragment extends PreferenceFragment {
     public void onCreate(Bundle onSavedInstanceState) {
         super.onCreate(onSavedInstanceState);
         addPreferencesFromResource(R.xml.settings_music_library);
-
     }
 
     @Override
@@ -60,14 +59,14 @@ public class SettingsMusicLibraryFragment extends PreferenceFragment {
         mRootView = super.onCreateView(inflater, container, onSavedInstanceState);
 
         mContext = getActivity().getApplicationContext();
-        mApp = (Common) mContext;
-        mListView = (ListView) mRootView.findViewById(android.R.id.list);
+        mApp = (Common)mContext;
+        mListView = (ListView)mRootView.findViewById(android.R.id.list);
 
         //Set the ActionBar background and text color.
         applyKitKatTranslucency();
         getActivity().getActionBar().setTitle(R.string.settings);
         int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-        TextView actionBarText = (TextView) getActivity().findViewById(titleId);
+        TextView actionBarText = (TextView)getActivity().findViewById(titleId);
         actionBarText.setTextColor(0xFFFFFFFF);
 
         mSelectMusicFoldersPreference = getPreferenceManager().findPreference("preference_key_music_folders");
@@ -83,7 +82,7 @@ public class SettingsMusicLibraryFragment extends PreferenceFragment {
      * Applies KitKat specific translucency.
      */
     private void applyKitKatTranslucency() {
-        if (Build.VERSION.SDK_INT==Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
 
             //Calculate ActionBar and navigation bar height.
             TypedValue tv = new TypedValue();
@@ -100,9 +99,7 @@ public class SettingsMusicLibraryFragment extends PreferenceFragment {
 
             //Set the window color.
             getActivity().getWindow().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(mContext));
-
         }
-
     }
 
     /**
@@ -120,7 +117,6 @@ public class SettingsMusicLibraryFragment extends PreferenceFragment {
 
             return false;
         }
-
     };
 
     /**
@@ -139,16 +135,13 @@ public class SettingsMusicLibraryFragment extends PreferenceFragment {
 
             return false;
         }
-
     };
 
     @Override
     public void onResume() {
         super.onResume();
 
-        if (Build.VERSION.SDK_INT==Build.VERSION_CODES.KITKAT)
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT)
             getActivity().getActionBar().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(mContext));
-
     }
-
 }

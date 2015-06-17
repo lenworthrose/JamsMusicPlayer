@@ -41,19 +41,19 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jams.music.player.R;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.nowplaying.NowPlayingActivity;
-import com.jams.music.player.R;
 import com.jams.music.player.services.AudioPlaybackService;
 import com.jams.music.player.utils.Common;
 import com.mobeta.android.dslv.DragSortListView;
 import com.mobeta.android.dslv.SimpleFloatViewManager;
 
 public class QueueDrawerFragment extends Fragment {
-	
-	private Context mContext;
-	private Common mApp;
+
+    private Context mContext;
+    private Common mApp;
 
     private RelativeLayout mMiniPlayerLayout;
     private ImageView mMiniPlayerAlbumArt;
@@ -64,7 +64,7 @@ public class QueueDrawerFragment extends Fragment {
     private TextView mTitleText;
     private TextView mSubText;
 
-	private DragSortListView mListView;
+    private DragSortListView mListView;
     private QueueDrawerAdapter mListViewAdapter;
     private TextView mEmptyInfoText;
 
@@ -72,30 +72,30 @@ public class QueueDrawerFragment extends Fragment {
     private boolean mDrawerOpen = false;
 
     @SuppressWarnings("deprecation")
-	@SuppressLint("NewApi")
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		
-		mContext = getActivity();
-		mApp = (Common) mContext.getApplicationContext();
+    @SuppressLint("NewApi")
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_queue_drawer, null);
-		if (mApp.getCurrentTheme()==Common.LIGHT_THEME) {
-			rootView.setBackgroundColor(0xFFFFFFFF);
-		} else {
-			rootView.setBackgroundColor(0xFF191919);
-		}
+        mContext = getActivity();
+        mApp = (Common)mContext.getApplicationContext();
 
-        mMiniPlayerLayout = (RelativeLayout) rootView.findViewById(R.id.queue_drawer_mini_player_layout);
-        mMiniPlayerAlbumArt = (ImageView) rootView.findViewById(R.id.queue_drawer_album_art);
-        mPlayPauseBackground = (RelativeLayout) rootView.findViewById(R.id.playPauseButtonBackground);
-        mPlayPauseButton = (ImageButton) rootView.findViewById(R.id.playPauseButton);
-        mNextButton = (ImageButton) rootView.findViewById(R.id.nextButton);
-        mPreviousButton = (ImageButton) rootView.findViewById(R.id.previousButton);
-        mTitleText = (TextView) rootView.findViewById(R.id.songName);
-        mSubText = (TextView) rootView.findViewById(R.id.artistAlbumName);
-        mListView = (DragSortListView) rootView.findViewById(R.id.queue_drawer_list_view);
-        mEmptyInfoText = (TextView) rootView.findViewById(R.id.queue_drawer_empty_text);
+        View rootView = inflater.inflate(R.layout.fragment_queue_drawer, null);
+        if (mApp.getCurrentTheme() == Common.LIGHT_THEME) {
+            rootView.setBackgroundColor(0xFFFFFFFF);
+        } else {
+            rootView.setBackgroundColor(0xFF191919);
+        }
+
+        mMiniPlayerLayout = (RelativeLayout)rootView.findViewById(R.id.queue_drawer_mini_player_layout);
+        mMiniPlayerAlbumArt = (ImageView)rootView.findViewById(R.id.queue_drawer_album_art);
+        mPlayPauseBackground = (RelativeLayout)rootView.findViewById(R.id.playPauseButtonBackground);
+        mPlayPauseButton = (ImageButton)rootView.findViewById(R.id.playPauseButton);
+        mNextButton = (ImageButton)rootView.findViewById(R.id.nextButton);
+        mPreviousButton = (ImageButton)rootView.findViewById(R.id.previousButton);
+        mTitleText = (TextView)rootView.findViewById(R.id.songName);
+        mSubText = (TextView)rootView.findViewById(R.id.artistAlbumName);
+        mListView = (DragSortListView)rootView.findViewById(R.id.queue_drawer_list_view);
+        mEmptyInfoText = (TextView)rootView.findViewById(R.id.queue_drawer_empty_text);
 
         mPlayPauseBackground.setBackgroundResource(UIElementsHelper.getShadowedCircle(mContext));
         mPlayPauseButton.setId(R.drawable.pause_light);
@@ -118,21 +118,19 @@ public class QueueDrawerFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event) {
                 return true;
             }
-
         });
 
         //KitKat translucent navigation/status bar.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             int navBarHeight = Common.getNavigationBarHeight(mContext);
-            if (mListView!=null) {
+            if (mListView != null) {
                 mListView.setPadding(0, 0, 0, navBarHeight);
                 mListView.setClipToPadding(false);
             }
-
         }
 
-		return rootView;
-	}
+        return rootView;
+    }
 
     /**
      * Broadcast receiver interface that will update this activity as necessary.
@@ -147,7 +145,6 @@ public class QueueDrawerFragment extends Fragment {
                 //Update the queue fragment with the new song info.
                 initMiniPlayer();
                 initListViewAdapter(false);
-
             }
 
             //Updates the playback control buttons.
@@ -156,11 +153,8 @@ public class QueueDrawerFragment extends Fragment {
 
             if (bundle.containsKey(Common.SERVICE_STOPPING)) {
                 showEmptyTextView();
-
             }
-
         }
-
     };
 
     /**
@@ -168,14 +162,13 @@ public class QueueDrawerFragment extends Fragment {
      * is running or not.
      */
     private void checkServiceRunning() {
-        if (mApp.isServiceRunning() && mApp.getService().getCursor()!=null) {
+        if (mApp.isServiceRunning() && mApp.getService().getCursor() != null) {
             initMiniPlayer();
             setPlayPauseButton();
             initListViewAdapter(mInitListViewParams);
         } else {
             showEmptyTextView();
         }
-
     }
 
     /**
@@ -186,27 +179,26 @@ public class QueueDrawerFragment extends Fragment {
         mMiniPlayerAlbumArt.setImageBitmap(mApp.getService().getCurrentSong().getAlbumArt());
         mTitleText.setText(mApp.getService().getCurrentSong().getTitle());
         mSubText.setText(mApp.getService().getCurrentSong().getAlbum() + " - " +
-                         mApp.getService().getCurrentSong().getArtist());
-
+                mApp.getService().getCurrentSong().getArtist());
     }
 
     /**
      * Initializes the drag sort list view.
      *
      * @param initViewParams Pass true if the ListView is being
-     *                       initialized for the very first time
-     *                       (dividers, background colors and other
-     *                       layout settings will be applied). Pass
-     *                       false if the list just needs to be updated
-     *                       with the current song.
+     * initialized for the very first time
+     * (dividers, background colors and other
+     * layout settings will be applied). Pass
+     * false if the list just needs to be updated
+     * with the current song.
      */
-	private void initListViewAdapter(boolean initViewParams) {
+    private void initListViewAdapter(boolean initViewParams) {
 
         if (initViewParams) {
             //Reset the initialization flag.
             mInitListViewParams = false;
 
-            if (mApp.getCurrentTheme()==Common.DARK_THEME) {
+            if (mApp.getCurrentTheme() == Common.DARK_THEME) {
                 mListView.setDivider(mContext.getResources().getDrawable(R.drawable.list_divider));
             } else {
                 mListView.setDivider(mContext.getResources().getDrawable(R.drawable.list_divider_light));
@@ -227,9 +219,7 @@ public class QueueDrawerFragment extends Fragment {
 
                 mListView.setClipToPadding(false);
                 mListView.setPadding(0, 0, 0, navigationBarHeight);
-
             }
-
         }
 
         mListViewAdapter = new QueueDrawerAdapter(mContext, mApp.getService().getPlaybackIndecesList());
@@ -251,7 +241,6 @@ public class QueueDrawerFragment extends Fragment {
          */
         if (!isDrawerOpen())
             mListView.setSelection(mApp.getService().getCurrentSongIndex());
-
     }
 
     /**
@@ -263,9 +252,7 @@ public class QueueDrawerFragment extends Fragment {
                 animatePlayToPause();
             else
                 animatePauseToPlay();
-
         }
-
     }
 
     /**
@@ -274,21 +261,20 @@ public class QueueDrawerFragment extends Fragment {
     private void animatePlayToPause() {
 
         //Check to make sure the current icon is the play icon.
-        if (mPlayPauseButton.getId()!=R.drawable.play_light)
+        if (mPlayPauseButton.getId() != R.drawable.play_light)
             return;
 
         //Fade out the play button.
         final ScaleAnimation scaleOut = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f,
-                mPlayPauseButton.getWidth()/2,
-                mPlayPauseButton.getHeight()/2);
+                mPlayPauseButton.getWidth() / 2,
+                mPlayPauseButton.getHeight() / 2);
         scaleOut.setDuration(150);
         scaleOut.setInterpolator(new AccelerateInterpolator());
 
-
         //Scale in the pause button.
         final ScaleAnimation scaleIn = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
-                mPlayPauseButton.getWidth()/2,
-                mPlayPauseButton.getHeight()/2);
+                mPlayPauseButton.getWidth() / 2,
+                mPlayPauseButton.getHeight() / 2);
         scaleIn.setDuration(150);
         scaleIn.setInterpolator(new DecelerateInterpolator());
 
@@ -310,7 +296,6 @@ public class QueueDrawerFragment extends Fragment {
             public void onAnimationRepeat(Animation animation) {
 
             }
-
         });
 
         scaleIn.setAnimationListener(new Animation.AnimationListener() {
@@ -331,7 +316,6 @@ public class QueueDrawerFragment extends Fragment {
             public void onAnimationRepeat(Animation animation) {
 
             }
-
         });
 
         mPlayPauseButton.startAnimation(scaleOut);
@@ -343,21 +327,20 @@ public class QueueDrawerFragment extends Fragment {
     private void animatePauseToPlay() {
 
         //Check to make sure the current icon is the pause icon.
-        if (mPlayPauseButton.getId()!=R.drawable.pause_light)
+        if (mPlayPauseButton.getId() != R.drawable.pause_light)
             return;
 
         //Scale out the pause button.
         final ScaleAnimation scaleOut = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f,
-                mPlayPauseButton.getWidth()/2,
-                mPlayPauseButton.getHeight()/2);
+                mPlayPauseButton.getWidth() / 2,
+                mPlayPauseButton.getHeight() / 2);
         scaleOut.setDuration(150);
         scaleOut.setInterpolator(new AccelerateInterpolator());
 
-
         //Scale in the play button.
         final ScaleAnimation scaleIn = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
-                mPlayPauseButton.getWidth()/2,
-                mPlayPauseButton.getHeight()/2);
+                mPlayPauseButton.getWidth() / 2,
+                mPlayPauseButton.getHeight() / 2);
         scaleIn.setDuration(150);
         scaleIn.setInterpolator(new DecelerateInterpolator());
 
@@ -379,7 +362,6 @@ public class QueueDrawerFragment extends Fragment {
             public void onAnimationRepeat(Animation animation) {
 
             }
-
         });
 
         scaleIn.setAnimationListener(new Animation.AnimationListener() {
@@ -400,7 +382,6 @@ public class QueueDrawerFragment extends Fragment {
             public void onAnimationRepeat(Animation animation) {
 
             }
-
         });
 
         mPlayPauseButton.startAnimation(scaleOut);
@@ -435,11 +416,8 @@ public class QueueDrawerFragment extends Fragment {
                     mApp.getService().togglePlaybackState();
                     return null;
                 }
-
             }.execute();
-
         }
-
     };
 
     /**
@@ -450,9 +428,7 @@ public class QueueDrawerFragment extends Fragment {
         @Override
         public void onClick(View arg0) {
             mApp.getService().skipToPreviousTrack();
-
         }
-
     };
 
     /**
@@ -463,9 +439,7 @@ public class QueueDrawerFragment extends Fragment {
         @Override
         public void onClick(View arg0) {
             mApp.getService().skipToNextTrack();
-
         }
-
     };
 
     /**
@@ -475,7 +449,6 @@ public class QueueDrawerFragment extends Fragment {
         mMiniPlayerLayout.setVisibility(View.GONE);
         mListView.setVisibility(View.INVISIBLE);
         mEmptyInfoText.setVisibility(View.VISIBLE);
-
     }
 
     /**
@@ -488,7 +461,6 @@ public class QueueDrawerFragment extends Fragment {
             Intent intent = new Intent(mContext, NowPlayingActivity.class);
             startActivity(intent);
         }
-
     };
 
     /**
@@ -500,9 +472,7 @@ public class QueueDrawerFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (mApp.isServiceRunning())
                 mApp.getService().skipToTrack(position);
-
         }
-
     };
 
     /**
@@ -512,20 +482,19 @@ public class QueueDrawerFragment extends Fragment {
 
         @Override
         public void drop(int from, int to) {
-            if (from!=to) {
+            if (from != to) {
                 int fromItem = mListViewAdapter.getItem(from);
                 int toItem = mListViewAdapter.getItem(to);
                 mListViewAdapter.remove(fromItem);
                 mListViewAdapter.insert(fromItem, to);
 
                 //If the current song was reordered, change currentSongIndex and update the next song.
-                if (from==mApp.getService().getCurrentSongIndex()) {
+                if (from == mApp.getService().getCurrentSongIndex()) {
                     mApp.getService().setCurrentSongIndex(to);
 
                     //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                     mApp.getService().prepareAlternateMediaPlayer();
                     return;
-
                 } else if (from > mApp.getService().getCurrentSongIndex() && to <= mApp.getService().getCurrentSongIndex()) {
                     //One of the next songs was moved to a position before the current song. Move currentSongIndex forward by 1.
                     mApp.getService().incrementCurrentSongIndex();
@@ -534,9 +503,8 @@ public class QueueDrawerFragment extends Fragment {
                     //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                     mApp.getService().prepareAlternateMediaPlayer();
                     return;
-
-                } else if (from < mApp.getService().getCurrentSongIndex() && to==mApp.getService().getCurrentSongIndex()) {
-                	/* One of the previous songs was moved to the current song's position (visually speaking,
+                } else if (from < mApp.getService().getCurrentSongIndex() && to == mApp.getService().getCurrentSongIndex()) {
+                    /* One of the previous songs was moved to the current song's position (visually speaking,
                 	 * the new song will look like it was placed right after the current song.
                 	 */
                     mApp.getService().decrementCurrentSongIndex();
@@ -545,7 +513,6 @@ public class QueueDrawerFragment extends Fragment {
                     //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                     mApp.getService().prepareAlternateMediaPlayer();
                     return;
-
                 } else if (from < mApp.getService().getCurrentSongIndex() && to > mApp.getService().getCurrentSongIndex()) {
                     //One of the previous songs was moved to a position after the current song. Move currentSongIndex back by 1.
                     mApp.getService().decrementCurrentSongIndex();
@@ -554,34 +521,27 @@ public class QueueDrawerFragment extends Fragment {
                     //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                     mApp.getService().prepareAlternateMediaPlayer();
                     return;
-
                 }
 
                 //If the next song was reordered, reload it with the new index.
-                if (mApp.getService().getPlaybackIndecesList().size() > (mApp.getService().getCurrentSongIndex()+1)) {
-                    if (fromItem==mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex()+1) ||
-                            toItem==mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex()+1)) {
+                if (mApp.getService().getPlaybackIndecesList().size() > (mApp.getService().getCurrentSongIndex() + 1)) {
+                    if (fromItem == mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex() + 1) ||
+                            toItem == mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex() + 1)) {
 
                         //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                         mApp.getService().prepareAlternateMediaPlayer();
-
                     }
-
                 } else {
                     //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                     mApp.getService().prepareAlternateMediaPlayer();
-
                 }
-
             }
 
             //Fire a broadcast that notifies all listeners that the current queue order has changed.
             String[] updateFlags = { Common.NEW_QUEUE_ORDER };
             String[] flagValues = { "" };
             mApp.broadcastUpdateUICommand(updateFlags, flagValues);
-
         }
-
     };
 
     /**
@@ -593,42 +553,37 @@ public class QueueDrawerFragment extends Fragment {
         public void remove(int which) {
 
             //Stop the service if we just removed the last (and only) song.
-            if (mApp.getService().getPlaybackIndecesList().size()==1) {
+            if (mApp.getService().getPlaybackIndecesList().size() == 1) {
                 mContext.stopService(new Intent(mContext, AudioPlaybackService.class));
                 return;
             }
 
             //If the song that was removed is the next song, reload it.
-            if (mApp.getService().getPlaybackIndecesList().size() > (mApp.getService().getCurrentSongIndex()+1)) {
-                if (mListViewAdapter.getItem(which)==mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex()+1)) {
+            if (mApp.getService().getPlaybackIndecesList().size() > (mApp.getService().getCurrentSongIndex() + 1)) {
+                if (mListViewAdapter.getItem(which) == mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex() + 1)) {
 
                     //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                     mApp.getService().prepareAlternateMediaPlayer();
-
-                } else if (mListViewAdapter.getItem(which)==mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex())) {
+                } else if (mListViewAdapter.getItem(which) == mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex())) {
                     mApp.getService().incrementCurrentSongIndex();
                     mApp.getService().prepareMediaPlayer(mApp.getService().getCurrentSongIndex());
                     mApp.getService().decrementCurrentSongIndex();
                 } else if (mListViewAdapter.getItem(which) < mApp.getService().getPlaybackIndecesList().get(mApp.getService().getCurrentSongIndex())) {
                     mApp.getService().decrementCurrentSongIndex();
                 }
-
-            } else if (which==(mApp.getService().getPlaybackIndecesList().size()-1) &&
-                    mApp.getService().getCurrentSongIndex()==(mApp.getService().getPlaybackIndecesList().size()-1)) {
+            } else if (which == (mApp.getService().getPlaybackIndecesList().size() - 1) &&
+                    mApp.getService().getCurrentSongIndex() == (mApp.getService().getPlaybackIndecesList().size() - 1)) {
                 //The current song was the last one and it was removed. Time to back up to the previous song.
                 mApp.getService().decrementCurrentSongIndex();
                 mApp.getService().prepareMediaPlayer(mApp.getService().getCurrentSongIndex());
             } else {
                 //Check which mediaPlayer is currently playing, and prepare the other mediaPlayer.
                 mApp.getService().prepareAlternateMediaPlayer();
-
             }
 
             //Remove the item from the adapter.
             mListViewAdapter.remove(mListViewAdapter.getItem(which));
-
         }
-
     };
 
     @Override
@@ -637,22 +592,19 @@ public class QueueDrawerFragment extends Fragment {
         checkServiceRunning();
         mPlayPauseBackground.setBackgroundResource(UIElementsHelper.getShadowedCircle(mContext));
         mPlayPauseButton.setId(R.drawable.pause_light);
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
         LocalBroadcastManager.getInstance(mContext)
-                             .registerReceiver((mReceiver), new IntentFilter(Common.UPDATE_UI_BROADCAST));
-
+                .registerReceiver((mReceiver), new IntentFilter(Common.UPDATE_UI_BROADCAST));
     }
 
     @Override
     public void onStop() {
         LocalBroadcastManager.getInstance(mContext).unregisterReceiver(mReceiver);
         super.onStop();
-
     }
 
     public boolean isDrawerOpen() {
@@ -662,5 +614,4 @@ public class QueueDrawerFragment extends Fragment {
     public void setIsDrawerOpen(boolean isOpen) {
         mDrawerOpen = isOpen;
     }
-
 }

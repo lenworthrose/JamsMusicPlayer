@@ -15,16 +15,16 @@
  */
 package com.jams.music.player.asynctask;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
+import java.util.ArrayList;
+
 public class AsyncReorderPlaylistEntriesTask extends AsyncTask<String, Integer, Boolean> {
     private Context mContext;
     private SharedPreferences sharedPreferences;
-    
+
     private String mPlaylistId;
     private ArrayList<String> mSongId;
     private ArrayList<String> mSongEntryId;
@@ -33,34 +33,33 @@ public class AsyncReorderPlaylistEntriesTask extends AsyncTask<String, Integer, 
     private String mPlaylistName;
     private ArrayList<String> mEntryIds;
     private ArrayList<String> mSongIds;
-    
-    public AsyncReorderPlaylistEntriesTask(Context context, 
-    								   	   String playlistId,
-    								   	   String playlistName,
-    								   	   ArrayList<String> songId,
-    								   	   ArrayList<String> songEntryId,
-    								   	   String afterEntryId,
-    								   	   String beforeEntryId,
-    								   	   ArrayList<String> entryIds,
-    								   	   ArrayList<String> songIds) {
-    	
-    	mContext = context;
-    	sharedPreferences = mContext.getSharedPreferences("com.jams.music.player", Context.MODE_PRIVATE);
-    	
-    	mPlaylistId = playlistId;
-    	mSongId = songId;
-    	mSongEntryId = songEntryId;
-    	mAfterEntryId = afterEntryId;
-    	mBeforeEntryId = afterEntryId;
-    	mPlaylistName = playlistName;
-    	mEntryIds = entryIds;
-    	mSongIds = songIds;
-    	
+
+    public AsyncReorderPlaylistEntriesTask(Context context,
+                                           String playlistId,
+                                           String playlistName,
+                                           ArrayList<String> songId,
+                                           ArrayList<String> songEntryId,
+                                           String afterEntryId,
+                                           String beforeEntryId,
+                                           ArrayList<String> entryIds,
+                                           ArrayList<String> songIds) {
+
+        mContext = context;
+        sharedPreferences = mContext.getSharedPreferences("com.jams.music.player", Context.MODE_PRIVATE);
+
+        mPlaylistId = playlistId;
+        mSongId = songId;
+        mSongEntryId = songEntryId;
+        mAfterEntryId = afterEntryId;
+        mBeforeEntryId = afterEntryId;
+        mPlaylistName = playlistName;
+        mEntryIds = entryIds;
+        mSongIds = songIds;
     }
- 
+
     @Override
     protected Boolean doInBackground(String... params) {
-    	
+
 /*    	if (sharedPreferences.getBoolean("GOOGLE_PLAY_MUSIC_ENABLED", false)==true) {
         	try {
     			GMusicClientCalls.reorderPlaylistEntryWebClient(mContext, 
@@ -81,14 +80,12 @@ public class AsyncReorderPlaylistEntriesTask extends AsyncTask<String, Integer, 
 		dbHelper.reorderSongInPlaylist(mContext, mPlaylistName, mPlaylistId, mEntryIds, mSongIds);
 		dbHelper.close();
 		dbHelper = null;*/
-    	
-    	return true;
-    }
-    
-    @Override
-	protected void onPostExecute(Boolean result) {
-		super.onPostExecute(result);
-		
+
+        return true;
     }
 
+    @Override
+    protected void onPostExecute(Boolean result) {
+        super.onPostExecute(result);
+    }
 }

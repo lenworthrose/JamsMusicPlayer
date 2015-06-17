@@ -23,15 +23,13 @@ import com.jams.music.player.utils.Common;
 
 public class PlayPauseBroadcastReceiver extends BroadcastReceiver {
 
-	private Common mApp;
-	
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		mApp = (Common) context.getApplicationContext();
-		
-		if (mApp.isServiceRunning())
-			mApp.getService().togglePlaybackState();
-		
-	}
+    private Common mApp;
 
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        mApp = (Common)context.getApplicationContext();
+
+        if (mApp.isServiceRunning())
+            mApp.getService().togglePlaybackState();
+    }
 }

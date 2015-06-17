@@ -32,7 +32,5 @@ public class ImageViewCoordHelper {
     public ImageViewCoordHelper(String albumArtPath, Bitmap thumbnail) {
         mAlbumArtPath = albumArtPath;
         mThumbnail = thumbnail;
-
     }
-
 }

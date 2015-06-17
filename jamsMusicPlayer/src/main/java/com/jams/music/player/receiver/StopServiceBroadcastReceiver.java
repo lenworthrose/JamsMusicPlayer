@@ -22,14 +22,12 @@ import android.content.Intent;
 import com.jams.music.player.utils.Common;
 
 public class StopServiceBroadcastReceiver extends BroadcastReceiver {
-	
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		
-		//Stop the service.
-		Common app = (Common) context.getApplicationContext();
-		app.getService().stopSelf();
-		
-	}
 
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        //Stop the service.
+        Common app = (Common)context.getApplicationContext();
+        app.getService().stopSelf();
+    }
 }

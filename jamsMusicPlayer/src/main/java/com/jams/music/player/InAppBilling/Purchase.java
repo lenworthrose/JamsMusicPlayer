@@ -63,14 +63,23 @@ public class Purchase {
     }
 
     public String getItemType() { return mItemType; }
+
     public String getOrderId() { return mOrderId; }
+
     public String getPackageName() { return mPackageName; }
+
     public String getSku() { return mSku; }
+
     public long getPurchaseTime() { return mPurchaseTime; }
+
     public int getPurchaseState() { return mPurchaseState; }
+
     public String getDeveloperPayload() { return mDeveloperPayload; }
+
     public String getToken() { return mToken; }
+
     public String getOriginalJson() { return mOriginalJson; }
+
     public String getSignature() { return mSignature; }
 
     @Override

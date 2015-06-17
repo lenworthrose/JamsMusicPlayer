@@ -22,9 +22,9 @@ import com.velocity.view.pager.library.VelocityViewPager.PageTransformer;
 public class ZoomOutPageTransformer implements PageTransformer {
     public static float MIN_SCALE = 0.85f;
     public static float MIN_ALPHA = 0.5f;
-    
+
     public ZoomOutPageTransformer(float minScale) {
-    	MIN_SCALE = minScale;
+        MIN_SCALE = minScale;
     }
 
     @Override
@@ -35,7 +35,6 @@ public class ZoomOutPageTransformer implements PageTransformer {
         if (position < -1) { // [-Infinity,-1)
             // This page is way off-screen to the left.
             view.setAlpha(0);
-
         } else if (position <= 1) { // [-1,1]
             // Modify the default slide transition to shrink the page as well
             float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
@@ -54,13 +53,10 @@ public class ZoomOutPageTransformer implements PageTransformer {
             // Fade the page relative to its size.
             view.setAlpha(MIN_ALPHA +
                     (scaleFactor - MIN_SCALE) /
-                    (1 - MIN_SCALE) * (1 - MIN_ALPHA));
-
+                            (1 - MIN_SCALE) * (1 - MIN_ALPHA));
         } else { // (1,+Infinity]
             // This page is way off-screen to the right.
             view.setAlpha(0);
         }
-        
     }
-    
 }

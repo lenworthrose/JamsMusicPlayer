@@ -56,5 +56,4 @@ public class PicassoCircularTransformer implements Transformation {
     public String key() {
         return "circle";
     }
-
 }

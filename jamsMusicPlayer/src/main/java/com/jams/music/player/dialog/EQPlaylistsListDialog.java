@@ -26,23 +26,23 @@ import com.jams.music.player.utils.Common;
 
 public class EQPlaylistsListDialog extends DialogFragment {
 
-	private Common mApp;
-	private Activity parentActivity;
-	private EqualizerActivity mFragment;
-	
-	public EQPlaylistsListDialog() {
-		super();
-	}
-	
-	public EQPlaylistsListDialog(EqualizerActivity fragment) {
-		mFragment = fragment;
-	}
-	
-	@Override
+    private Common mApp;
+    private Activity parentActivity;
+    private EqualizerActivity mFragment;
+
+    public EQPlaylistsListDialog() {
+        super();
+    }
+
+    public EQPlaylistsListDialog(EqualizerActivity fragment) {
+        mFragment = fragment;
+    }
+
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-		mApp = (Common) getActivity().getApplicationContext();
-		parentActivity = getActivity();		
+        mApp = (Common)getActivity().getApplicationContext();
+        parentActivity = getActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         /*//Get a cursor with the list of all user-created playlists.
@@ -68,5 +68,4 @@ public class EQPlaylistsListDialog extends DialogFragment {
 */
         return builder.create();
     }
-	
 }

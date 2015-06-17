@@ -23,15 +23,13 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
-import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.R;
+import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.utils.Common;
 
 import java.util.List;
 
 /**
- *
- *
  * @author Saravan Pantham
  */
 public class SettingsActivity extends PreferenceActivity {
@@ -44,7 +42,7 @@ public class SettingsActivity extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         mContext = this.getApplicationContext();
         mActivity = this;
-        mApp = (Common) mContext;
+        mApp = (Common)mContext;
 
         setTheme(R.style.SettingsThemeLight);
         super.onCreate(savedInstanceState);
@@ -53,16 +51,15 @@ public class SettingsActivity extends PreferenceActivity {
         getActionBar().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(mContext));
         getActionBar().setTitle(R.string.settings);
         int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-        TextView actionBarText = (TextView) findViewById(titleId);
+        TextView actionBarText = (TextView)findViewById(titleId);
         actionBarText.setTextColor(0xFFFFFFFF);
-
     }
 
     /**
      * Applies KitKat specific translucency.
      */
     public void applyKitKatTranslucency() {
-        if (Build.VERSION.SDK_INT==Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
 
             //Calculate ActionBar and navigation bar height.
             TypedValue tv = new TypedValue();
@@ -71,8 +68,8 @@ public class SettingsActivity extends PreferenceActivity {
                 actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
             }
 
-            ((View) this.getListView().getParent()).setPadding(0, actionBarHeight + mApp.getStatusBarHeight(mContext),
-                                                               0, 0);
+            ((View)this.getListView().getParent()).setPadding(0, actionBarHeight + mApp.getStatusBarHeight(mContext),
+                    0, 0);
 
             this.getListView().setBackgroundColor(0xFFEEEEEE);
             this.getListView().setPadding(0, 0, 0, mApp.getNavigationBarHeight(mContext));
@@ -80,22 +77,18 @@ public class SettingsActivity extends PreferenceActivity {
 
             //Set the window color.
             getWindow().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(mContext));
-
         }
-
     }
 
     @Override
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.settings_headers, target);
         applyKitKatTranslucency();
-
     }
 
     @Override
-    protected boolean isValidFragment (String fragmentName) {
-       return true;
-
+    protected boolean isValidFragment(String fragmentName) {
+        return true;
     }
 
     @Override
@@ -103,7 +96,5 @@ public class SettingsActivity extends PreferenceActivity {
         super.onResume();
         applyKitKatTranslucency();
         getActionBar().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(mContext));
-
     }
-
 }

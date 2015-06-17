@@ -30,8 +30,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.R;
+import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.utils.Common;
 
 /**
@@ -56,7 +56,6 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
     public void onCreate(Bundle onSavedInstanceState) {
         super.onCreate(onSavedInstanceState);
         addPreferencesFromResource(R.xml.settings_layouts);
-
     }
 
     @Override
@@ -64,14 +63,14 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
         mRootView = super.onCreateView(inflater, container, onSavedInstanceState);
 
         mContext = getActivity().getApplicationContext();
-        mApp = (Common) mContext;
-        mListView = (ListView) mRootView.findViewById(android.R.id.list);
+        mApp = (Common)mContext;
+        mListView = (ListView)mRootView.findViewById(android.R.id.list);
 
         //Set the ActionBar background and text color.
         applyKitKatTranslucency();
         getActivity().getActionBar().setTitle(R.string.settings);
         int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-        TextView actionBarText = (TextView) getActivity().findViewById(titleId);
+        TextView actionBarText = (TextView)getActivity().findViewById(titleId);
         actionBarText.setTextColor(0xFFFFFFFF);
 
         mArtistsPreference = getPreferenceManager().findPreference("preference_key_artists_layout");
@@ -96,7 +95,7 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
      * Applies KitKat specific translucency.
      */
     private void applyKitKatTranslucency() {
-        if (Build.VERSION.SDK_INT==Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
 
             //Calculate ActionBar and navigation bar height.
             TypedValue tv = new TypedValue();
@@ -113,9 +112,7 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
 
             //Set the window color.
             getActivity().getWindow().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(mContext));
-
         }
-
     }
 
     /**
@@ -138,15 +135,12 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
                     mApp.getSharedPreferences().edit().putInt(Common.ARTISTS_LAYOUT, which).commit();
                     dialog.dismiss();
                     Toast.makeText(mContext, R.string.changes_saved, Toast.LENGTH_SHORT).show();
-
                 }
-
             });
 
             builder.create().show();
             return false;
         }
-
     };
 
     /**
@@ -169,15 +163,12 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
                     mApp.getSharedPreferences().edit().putInt(Common.ALBUMS_LAYOUT, which).commit();
                     dialog.dismiss();
                     Toast.makeText(mContext, R.string.changes_saved, Toast.LENGTH_SHORT).show();
-
                 }
-
             });
 
             builder.create().show();
             return false;
         }
-
     };
 
     /**
@@ -200,15 +191,12 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
                     mApp.getSharedPreferences().edit().putInt(Common.ALBUM_ARTISTS_LAYOUT, which).commit();
                     dialog.dismiss();
                     Toast.makeText(mContext, R.string.changes_saved, Toast.LENGTH_SHORT).show();
-
                 }
-
             });
 
             builder.create().show();
             return false;
         }
-
     };
 
     /**
@@ -218,7 +206,7 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
 
         @Override
         public boolean onPreferenceClick(Preference preference) {
-            
+
             //Get the current preference.
             int currentPreference = mApp.getSharedPreferences().getInt(Common.PLAYLISTS_LAYOUT, 0);
 
@@ -231,15 +219,12 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
                     mApp.getSharedPreferences().edit().putInt(Common.PLAYLISTS_LAYOUT, which).commit();
                     dialog.dismiss();
                     Toast.makeText(mContext, R.string.changes_saved, Toast.LENGTH_SHORT).show();
-
                 }
-
             });
 
             builder.create().show();
             return false;
         }
-
     };
 
     /**
@@ -249,7 +234,7 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
 
         @Override
         public boolean onPreferenceClick(Preference preference) {
-            
+
             //Get the current preference.
             int currentPreference = mApp.getSharedPreferences().getInt(Common.GENRES_LAYOUT, 0);
 
@@ -262,15 +247,12 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
                     mApp.getSharedPreferences().edit().putInt(Common.GENRES_LAYOUT, which).commit();
                     dialog.dismiss();
                     Toast.makeText(mContext, R.string.changes_saved, Toast.LENGTH_SHORT).show();
-
                 }
-
             });
 
             builder.create().show();
             return false;
         }
-
     };
 
     /**
@@ -280,7 +262,7 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
 
         @Override
         public boolean onPreferenceClick(Preference preference) {
-            
+
             //Get the current preference.
             int currentPreference = mApp.getSharedPreferences().getInt(Common.FOLDERS_LAYOUT, 0);
 
@@ -293,24 +275,19 @@ public class SettingsLayoutsFragment extends PreferenceFragment {
                     mApp.getSharedPreferences().edit().putInt(Common.FOLDERS_LAYOUT, which).commit();
                     dialog.dismiss();
                     Toast.makeText(mContext, R.string.changes_saved, Toast.LENGTH_SHORT).show();
-
                 }
-
             });
 
             builder.create().show();
             return false;
         }
-
     };
 
     @Override
     public void onResume() {
         super.onResume();
 
-        if (Build.VERSION.SDK_INT==Build.VERSION_CODES.KITKAT)
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT)
             getActivity().getActionBar().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(mContext));
-
     }
-
 }

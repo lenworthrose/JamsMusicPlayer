@@ -25,31 +25,31 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.jams.music.player.helper.UIElementsHelper;
 import com.jams.music.player.R;
+import com.jams.music.player.helper.UIElementsHelper;
 
 public class NowPlayingColorSchemesDialog extends DialogFragment {
 
-	private Activity parentActivity;
-	private int selectedThemeIndex;
-	private DialogFragment dialogFragment;
-	
-	private static final String NOW_PLAYING_COLOR = "NOW_PLAYING_COLOR";
-	private static final String BLUE = "BLUE";
-	private static final String RED = "RED";
-	private static final String GREEN = "GREEN";
-	private static final String ORANGE = "ORANGE";
-	private static final String PURPLE = "PURPLE";
-	private static final String MAGENTA = "MAGENTA";
-	private static final String GRAY = "GRAY";
-	private static final String WHITE = "WHITE";
-	private static final String BLACK = "BLACK";
-	
-	@Override
+    private Activity parentActivity;
+    private int selectedThemeIndex;
+    private DialogFragment dialogFragment;
+
+    private static final String NOW_PLAYING_COLOR = "NOW_PLAYING_COLOR";
+    private static final String BLUE = "BLUE";
+    private static final String RED = "RED";
+    private static final String GREEN = "GREEN";
+    private static final String ORANGE = "ORANGE";
+    private static final String PURPLE = "PURPLE";
+    private static final String MAGENTA = "MAGENTA";
+    private static final String GRAY = "GRAY";
+    private static final String WHITE = "WHITE";
+    private static final String BLACK = "BLACK";
+
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         parentActivity = getActivity();
-        dialogFragment = (DialogFragment) getFragmentManager().findFragmentByTag("colorSchemesDialog");
+        dialogFragment = (DialogFragment)getFragmentManager().findFragmentByTag("colorSchemesDialog");
 
         final SharedPreferences sharedPreferences = parentActivity.
                 getSharedPreferences("com.jams.music.player", Context.MODE_PRIVATE);
@@ -61,28 +61,20 @@ public class NowPlayingColorSchemesDialog extends DialogFragment {
             selectedThemeIndex = 0;
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(GRAY)) {
             selectedThemeIndex = 1;
-
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(BLUE)) {
             selectedThemeIndex = 2;
-
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(RED)) {
             selectedThemeIndex = 3;
-
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(GREEN)) {
             selectedThemeIndex = 4;
-
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(ORANGE)) {
             selectedThemeIndex = 5;
-
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(PURPLE)) {
             selectedThemeIndex = 6;
-
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(MAGENTA)) {
             selectedThemeIndex = 7;
-
         } else if (sharedPreferences.getString(NOW_PLAYING_COLOR, BLUE).equals(BLACK)) {
             selectedThemeIndex = 8;
-
         } else {
             selectedThemeIndex = 0;
         }
@@ -125,12 +117,9 @@ public class NowPlayingColorSchemesDialog extends DialogFragment {
 
                 getActivity().getActionBar().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(getActivity()));
                 getActivity().getWindow().setBackgroundDrawable(UIElementsHelper.getGeneralActionBarBackground(getActivity()));
-
             }
-
         });
 
         return builder.create();
     }
-	
 }

@@ -23,10 +23,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jams.music.player.R;
 import com.jams.music.player.helper.SongHelper;
 import com.jams.music.player.helper.TypefaceHelper;
 import com.jams.music.player.helper.UIElementsHelper;
-import com.jams.music.player.R;
 import com.jams.music.player.utils.Common;
 
 import java.util.ArrayList;
@@ -41,21 +41,21 @@ public class QueueDrawerAdapter extends ArrayAdapter<Integer> {
         super(context, R.layout.queue_drawer_list_layout, playbackIndecesList);
 
         mContext = context;
-        mApp = (Common) mContext.getApplicationContext();
+        mApp = (Common)mContext.getApplicationContext();
         mColors = UIElementsHelper.getQuickScrollColors(context);
     }
 
-    public View getView(final int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         QueueDrawerHolder holder;
-        if (convertView==null) {
+        if (convertView == null) {
             convertView = LayoutInflater.from(mContext)
-                                        .inflate(R.layout.queue_drawer_list_layout, parent, false);
+                    .inflate(R.layout.queue_drawer_list_layout, parent, false);
 
             holder = new QueueDrawerHolder();
-            holder.songTitleText = (TextView) convertView.findViewById(R.id.queue_song_title);
-            holder.artistText = (TextView) convertView.findViewById(R.id.queue_song_artist);
-            holder.removeSong = (ImageView) convertView.findViewById(R.id.queue_remove_song);
+            holder.songTitleText = (TextView)convertView.findViewById(R.id.queue_song_title);
+            holder.artistText = (TextView)convertView.findViewById(R.id.queue_song_artist);
+            holder.removeSong = (ImageView)convertView.findViewById(R.id.queue_remove_song);
 
             holder.songTitleText.setTextColor(UIElementsHelper.getThemeBasedTextColor(mContext));
             holder.artistText.setTextColor(UIElementsHelper.getSmallTextColor(mContext));
@@ -64,7 +64,7 @@ public class QueueDrawerAdapter extends ArrayAdapter<Integer> {
 
             convertView.setTag(holder);
         } else {
-            holder = (QueueDrawerHolder) convertView.getTag();
+            holder = (QueueDrawerHolder)convertView.getTag();
         }
 
         //Get the song's basic info.
@@ -76,17 +76,16 @@ public class QueueDrawerAdapter extends ArrayAdapter<Integer> {
 
         //Apply the item's colors.
         try {
-            if (position==mApp.getService().getCurrentSongIndex()) {
+            if (position == mApp.getService().getCurrentSongIndex()) {
                 holder.songTitleText.setTextColor(mColors[0]);
                 holder.artistText.setTextColor(mColors[0]);
-            } else if (mApp.getCurrentTheme()==Common.LIGHT_THEME) {
+            } else if (mApp.getCurrentTheme() == Common.LIGHT_THEME) {
                 holder.songTitleText.setTextColor(UIElementsHelper.getThemeBasedTextColor(mContext));
                 holder.artistText.setTextColor(UIElementsHelper.getSmallTextColor(mContext));
-            } else if (mApp.getCurrentTheme()==Common.DARK_THEME) {
+            } else if (mApp.getCurrentTheme() == Common.DARK_THEME) {
                 holder.songTitleText.setTextColor(UIElementsHelper.getThemeBasedTextColor(mContext));
                 holder.artistText.setTextColor(UIElementsHelper.getSmallTextColor(mContext));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -99,5 +98,4 @@ public class QueueDrawerAdapter extends ArrayAdapter<Integer> {
         public TextView artistText;
         public ImageView removeSong;
     }
-
 }

@@ -56,5 +56,4 @@ public class PicassoRoundedRectTransformer implements com.squareup.picasso.Trans
     public String key() {
         return this.key;
     }
-
 }

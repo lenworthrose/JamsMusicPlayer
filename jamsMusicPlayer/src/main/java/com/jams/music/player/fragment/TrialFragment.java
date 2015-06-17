@@ -34,29 +34,29 @@ import com.jams.music.player.inappbilling.Purchase;
 import com.jams.music.player.main.MainActivity;
 
 public class TrialFragment extends Fragment {
-	
-	private Context mContext;
-	private SharedPreferences sharedPreferences;
-	
-	protected static final String ITEM_SKU = "com.jams.music.player.unlock";
+
+    private Context mContext;
+    private SharedPreferences sharedPreferences;
+
+    protected static final String ITEM_SKU = "com.jams.music.player.unlock";
     protected static final String ITEM_SKU_PROMO = "com.jams.music.player.unlock.promo";
-	
-	private int numDaysRemaining;
-	private boolean expired;
-	
-	private TextView daysRemaining;
-	private TextView infoText;
-	private Button laterButton;
-	private Button upgradeNowButton;
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_trial_version, container, false);
-		mContext = getActivity().getApplicationContext();
-		sharedPreferences = mContext.getSharedPreferences("com.jams.music.player", Context.MODE_PRIVATE);
-		
-		numDaysRemaining = getArguments().getInt("NUM_DAYS_REMAINING");
-		expired = getArguments().getBoolean("EXPIRED");
+
+    private int numDaysRemaining;
+    private boolean expired;
+
+    private TextView daysRemaining;
+    private TextView infoText;
+    private Button laterButton;
+    private Button upgradeNowButton;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_trial_version, container, false);
+        mContext = getActivity().getApplicationContext();
+        sharedPreferences = mContext.getSharedPreferences("com.jams.music.player", Context.MODE_PRIVATE);
+
+        numDaysRemaining = getArguments().getInt("NUM_DAYS_REMAINING");
+        expired = getArguments().getBoolean("EXPIRED");
 
         //Circumvent the trial check since the app is no longer paid.
         getActivity().finish();
@@ -65,7 +65,7 @@ public class TrialFragment extends Fragment {
         return rootView;
 
 		/*daysRemaining = (TextView) rootView.findViewById(R.id.trial_days_remaining);
-		infoText = (TextView) rootView.findViewById(R.id.trial_message);
+        infoText = (TextView) rootView.findViewById(R.id.trial_message);
 		laterButton = (Button) rootView.findViewById(R.id.upgrade_later);
 		upgradeNowButton = (Button) rootView.findViewById(R.id.upgrade_now);
 		
@@ -143,69 +143,64 @@ public class TrialFragment extends Fragment {
         }
 		
 		return rootView;*/
-	}
-	
-	private void initUpgradeProcessWithPromo() {
+    }
+
+    private void initUpgradeProcessWithPromo() {
 /*		//Load the special offer fragment into the activity.
 		SpecialUpgradeOfferFragment fragment = new SpecialUpgradeOfferFragment();
 		
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 	    transaction.replace(R.id.launcher_root_view, fragment, "specialUpgradeOfferFragment");
 	    transaction.commit();*/
-	    
-	}
-	
-	private void launchMainActivity() {
-		Intent intent = new Intent(mContext, MainActivity.class);
-		int startupScreen = sharedPreferences.getInt("STARTUP_SCREEN", 0);
-		
-		switch (startupScreen) {
-		case 0:
-			intent.putExtra("TARGET_FRAGMENT", "ARTISTS");
-			break;
-		case 1:
-			intent.putExtra("TARGET_FRAGMENT", "ALBUM_ARTISTS");
-			break;
-		case 2:
-			intent.putExtra("TARGET_FRAGMENT", "ALBUMS");
-			break;
-		case 3:
-			intent.putExtra("TARGET_FRAGMENT", "SONGS");
-			break;
-		case 4:
-			intent.putExtra("TARGET_FRAGMENT", "PLAYLISTS");
-			break;
-		case 5:
-			intent.putExtra("TARGET_FRAGMENT", "GENRES");
-			break;
-		case 6:
-			intent.putExtra("TARGET_FRAGMENT", "FOLDERS");
-			break;
-		}
-		
-		startActivity(intent);
-		getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-		getActivity().finish();
-		
-	}
-	
-	IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-		
-		public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-			
-			if (result.isFailure()) {	
-				Toast.makeText(mContext, R.string.unable_to_purchase, Toast.LENGTH_LONG).show();
-				sharedPreferences.edit().putBoolean("TRIAL", true).commit();
-				return;
-			} else if (purchase.getSku().equals(ITEM_SKU) || purchase.getSku().equals(ITEM_SKU_PROMO)) {
-				Toast.makeText(mContext, R.string.jams_trial_time_removed, Toast.LENGTH_LONG).show();
-				sharedPreferences.edit().putBoolean("TRIAL", false).commit();
-				launchMainActivity();
-				
-			}
-	      
-		}
-	   
-	};
-	
+
+    }
+
+    private void launchMainActivity() {
+        Intent intent = new Intent(mContext, MainActivity.class);
+        int startupScreen = sharedPreferences.getInt("STARTUP_SCREEN", 0);
+
+        switch (startupScreen) {
+            case 0:
+                intent.putExtra("TARGET_FRAGMENT", "ARTISTS");
+                break;
+            case 1:
+                intent.putExtra("TARGET_FRAGMENT", "ALBUM_ARTISTS");
+                break;
+            case 2:
+                intent.putExtra("TARGET_FRAGMENT", "ALBUMS");
+                break;
+            case 3:
+                intent.putExtra("TARGET_FRAGMENT", "SONGS");
+                break;
+            case 4:
+                intent.putExtra("TARGET_FRAGMENT", "PLAYLISTS");
+                break;
+            case 5:
+                intent.putExtra("TARGET_FRAGMENT", "GENRES");
+                break;
+            case 6:
+                intent.putExtra("TARGET_FRAGMENT", "FOLDERS");
+                break;
+        }
+
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        getActivity().finish();
+    }
+
+    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
+
+        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+
+            if (result.isFailure()) {
+                Toast.makeText(mContext, R.string.unable_to_purchase, Toast.LENGTH_LONG).show();
+                sharedPreferences.edit().putBoolean("TRIAL", true).commit();
+                return;
+            } else if (purchase.getSku().equals(ITEM_SKU) || purchase.getSku().equals(ITEM_SKU_PROMO)) {
+                Toast.makeText(mContext, R.string.jams_trial_time_removed, Toast.LENGTH_LONG).show();
+                sharedPreferences.edit().putBoolean("TRIAL", false).commit();
+                launchMainActivity();
+            }
+        }
+    };
 }

@@ -61,9 +61,13 @@ public class SkuDetails {
     }
 
     public String getSku() { return mSku; }
+
     public String getType() { return mType; }
+
     public String getPrice() { return mPrice; }
+
     public String getTitle() { return mTitle; }
+
     public String getDescription() { return mDescription; }
 
     @Override
